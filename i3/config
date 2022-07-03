@@ -49,28 +49,32 @@ exec --no-startup-id ~/scripts/autosuspend.sh
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym F12 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym F11 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym F12 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && $refresh_i3status
+bindsym F11 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && $refresh_i3status
 bindsym F10 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym F9 exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym F2 exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Brightness control
-bindsym F6 exec --no-startup-id xbacklight -inc 1%
-bindsym F5 exec --no-startup-id xbacklight -dec 1%
+bindsym F6 exec --no-startup-id brightnessctl set +1%
+bindsym F5 exec --no-startup-id brightnessctl set 1%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty -e bash
+bindsym $mod+Return exec alacritty 
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
+
+# switch windows
+ 
 # Ranger Shortcut
 bindsym $mod+q exec alacritty -e ranger
+
 # Config shortcut
 bindsym $mod+c exec alacritty -e vim ~/.config/i3/config
 
@@ -82,6 +86,24 @@ exec --no-startup-id feh --bg-scale ~/Pictures/Dracula.png
 
 # Browser shortcut
 bindsym $mod+shift+f exec firefox
+
+# Monitor
+exec --no-startup-id ~/scripts/mirrorscreen.sh
+bindsym F7 exec ~/scripts/singlescreen.sh
+bindsym F8 exec ~/scripts/mirrorscreen.sh
+bindsym F9 exec ~/scripts/splitscreen.sh
+
+# Screenshots
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+
+## Clipboard Screenshots
+bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -174,7 +196,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id ~/scripts/powermenu.sh
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"

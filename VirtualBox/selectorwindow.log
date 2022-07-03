@@ -1,0 +1,22 @@
+00:00:02.684808 VirtualBox GUI VM Selector Window 6.1.34 r150636 linux.amd64 (May 30 2022 06:37:05) release log
+00:00:02.684811 Log opened 2022-06-22T19:01:10.302480000Z
+00:00:02.684812 Build Type: release
+00:00:02.684815 OS Product: Linux
+00:00:02.684817 OS Release: 5.18.5-arch1-1
+00:00:02.684818 OS Version: #1 SMP PREEMPT_DYNAMIC Thu, 16 Jun 2022 20:40:45 +0000
+00:00:02.684844 DMI Product Name: X510UNR
+00:00:02.684855 DMI Product Version: 1.0       
+00:00:02.684861 Firmware type: UEFI
+00:00:02.685732 Secure Boot: Disabled
+00:00:02.685778 Host RAM: 7835MB (7.6GB) total, 7369MB (7.1GB) available
+00:00:02.685788 Executable: /usr/lib/virtualbox/VirtualBox
+00:00:02.685788 Process ID: 986
+00:00:02.685789 Package type: LINUX_64BITS_GENERIC (OSE)
+00:00:02.685824 Qt version: 5.15.4
+00:00:03.027430 GUI: UIMediumEnumerator: Medium-enumeration started...
+00:00:05.446221 GUI: UIDesktopWidgetWatchdog::sltHandleHostScreenAvailableGeometryCalculated: Screen 0 work area is actually resized to: 9x9 x 947x1034
+00:00:05.488225 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:17:59.484010 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:29:43.944849 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:29:51.401418 GUI: UIMediumEnumerator: Medium-enumeration finished!
+00:29:52.721145 GUI: UIMediumEnumerator: Medium-enumeration finished!
