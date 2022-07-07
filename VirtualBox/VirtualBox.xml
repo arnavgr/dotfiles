@@ -10,7 +10,7 @@
     <ExtraData>
       <ExtraDataItem name="GUI/Details/Elements" value="general,system,preview,display,storage,audio,network,usb,sharedFolders,description"/>
       <ExtraDataItem name="GUI/GroupDefinitions/" value="n=GLOBAL,m=2e686ca0-c3bd-4bcc-948c-aafd8ece9fc5,m=f70cb487-15b7-40e5-b448-5b2ada029a25"/>
-      <ExtraDataItem name="GUI/LastItemSelected" value="m=Archcraft"/>
+      <ExtraDataItem name="GUI/LastItemSelected" value="m=axylOs"/>
       <ExtraDataItem name="GUI/LastWindowPosition" value="10,10,1900,1034"/>
       <ExtraDataItem name="GUI/RecentFolderCD" value="/home/arnav/Downloads"/>
       <ExtraDataItem name="GUI/RecentListCD" value="/home/arnav/Downloads/axyl-2022.04.01-x86_64.iso,/home/arnav/Downloads/archcraft-2022.06.08-x86_64.iso"/>

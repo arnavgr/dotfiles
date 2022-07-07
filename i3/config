@@ -88,10 +88,12 @@ exec --no-startup-id feh --bg-scale ~/Pictures/Dracula.png
 bindsym $mod+shift+f exec firefox
 
 # Monitor
-exec --no-startup-id ~/scripts/mirrorscreen.sh
 bindsym F7 exec ~/scripts/singlescreen.sh
 bindsym F8 exec ~/scripts/mirrorscreen.sh
 bindsym F9 exec ~/scripts/splitscreen.sh
+
+# Suspend
+bindsym F1 exec systemctl suspend 
 
 # Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
