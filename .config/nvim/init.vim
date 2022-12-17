@@ -42,12 +42,6 @@ set scrolloff=1 sidescrolloff=5
 " Colorscheme
 colorscheme dracula
 
-" i3 config syntax highlighting
-aug i3config_ft_detection
-  au!
-  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
-aug end
-
 " airline config
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1

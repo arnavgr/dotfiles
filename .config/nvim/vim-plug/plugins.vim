@@ -8,8 +8,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'jiangmiao/auto-pairs'
     " Colorscheme for vim
     Plug 'dracula/vim', { 'as': 'dracula' }
-    " i3 Plugin Support 
-    Plug 'mboughaba/i3config.vim'
     " airline customisation
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
