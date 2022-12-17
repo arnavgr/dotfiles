@@ -30,6 +30,6 @@ source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # git-prompt
-source ~/.config/zsh/git-prompt.zsh/git-prompt.zsh
+source ~/.config/zsh/git-prompt/git-prompt.zsh
 
 
