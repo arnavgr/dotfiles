@@ -32,4 +32,6 @@ source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # git-prompt
 source ~/.config/zsh/git-prompt/git-prompt.zsh
 
+# aliases
+source ~/.config/zsh/.zsh_alias
 
