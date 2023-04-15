@@ -1,3 +1,4 @@
+#startup programs
 neofetch
 
 # history management

@@ -1,5 +1,5 @@
 # This install all packages along with aur
-sudo pacman -Syu --needed base-devel nvim w3m github-cli neofetch firefox ranger zsh lxappearance htop feh pamixer flatpak ueberzug atool poppler imagemagick highlight zathura-pdf-poppler
+sudo pacman -Syu --needed base-devel nvim w3m github-cli neofetch firefox ranger zsh lxappearance htop feh pamixer flatpak ueberzug atool poppler imagemagick highlight zathura-pdf-poppler brightnessctl dunst maim xclip picom
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
