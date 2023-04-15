@@ -1,0 +1,13 @@
+#! /bin/bash
+
+chosen=$(printf "  Power Off\n  Restart\n  Lock\n  Logout\n鈴 Sleep" | dmenu -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'FiraCode Nerd Font-12' -p 'exitmenu' -h 22) 
+
+case "$chosen" in
+  "  Power Off") poweroff ;;
+  "  Restart") reboot ;;
+  "  Lock") slock ;;
+  "  Logout") killall xinit ;;
+  "鈴 Sleep") systemctl suspend ;;
+esac
+
+
