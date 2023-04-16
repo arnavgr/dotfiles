@@ -15,7 +15,7 @@ ln -s "$PWD/.config/zathura" ~/.config
 ln -s "$PWD/.config/picom" ~/.config
 ln -s "$PWD/.config/dunst" ~/.config
 ln -s "$PWD/.config/neofetch" ~/.config
-sudo ln -s "$PWD/bin" /usr/bin
+ln -s "$PWD/bin" ~
 
 
 
