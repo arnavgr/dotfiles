@@ -1,0 +1,14 @@
+#! /bin/bash
+
+chosen=$(printf "fullscreen\nselection\nactive window\nclip fullscreen\nclip selection\nclip active window" | dmenu -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'FiraCode Nerd Font-12' -p 'screenshot' -h 22) 
+
+case "$chosen" in
+  "fullscreen") maim "/home/$USER/Pictures/$(date)" ;;
+  "selection") maim --select "/home/$USER/Pictures/$(date)" ;;
+  "active window") maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)" ;;
+  "clip fullscreen") maim | xclip -selection clipboard -t image/png ;;
+  "clip selection") maim --select | xclip -selection clipboard -t image/png ;;
+  "clip active window") maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png ;;
+esac
+
+

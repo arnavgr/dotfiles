@@ -1,0 +1,23 @@
+#!/bin/bash
+
+vol=$(pamixer --get-volume-human)
+volint=$(pamixer --get-volume)
+
+if [ "$volint" -ge 50 ] && [ "$vol" != "muted" ]; then
+    echo 󰕾 $vol 
+
+elif [ "$volint" -lt 50 ] && [ "$volint" -gt 0 ] && [ "$vol" != "muted" ]; then
+    echo  $vol 
+
+elif [ "$volint" -eq 0 ] && [ "$vol" != "muted" ]; then
+    echo  $vol 
+
+elif [ "$vol" = "muted" ]; then
+    echo 󰖁 $vol 
+
+fi
+
+
+
+
+
