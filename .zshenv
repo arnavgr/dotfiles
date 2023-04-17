@@ -11,3 +11,6 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# stop dmesg from printing useless text
+sudo dmesg -n 1
+
