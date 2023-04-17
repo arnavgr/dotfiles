@@ -1,6 +1,6 @@
 #!/bin/bash
 
-vol=$(pamixer --get-volume-human)
+vol=$(pamixer --get-volume-human --set-limit 100)
 volint=$(pamixer --get-volume)
 
 if [ "$volint" -ge 50 ] && [ "$vol" != "muted" ]; then

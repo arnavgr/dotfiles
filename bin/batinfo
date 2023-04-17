@@ -1,0 +1,22 @@
+#!/bin/bash
+
+bat=$(cat /sys/class/power_supply/BAT0/capacity)
+bat_status=$(acpi | grep -c Charging)
+if [ "$bat_status" -eq 1 ]; then
+  echo   $bat 
+
+elif [ "$bat" -gt 0 ] && [ "$bat" -le 25 ]; then
+  echo "  $bat"
+
+elif [ "$bat" -gt 25 ] && [ "$bat" -le 50 ]; then
+  echo "  $bat"
+
+elif [ "$bat" -gt 50 ] &&  [ "$bat" -le 75 ]; then
+  echo "  $bat"
+
+elif [ "$bat" -gt 75 ] &&  [ "$bat" -le 100 ]; then
+  echo "  $bat" 
+
+fi
+
+
