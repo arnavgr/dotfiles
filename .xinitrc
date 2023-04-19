@@ -5,7 +5,7 @@ feh --bg-scale ~/Downloads/pxfuel.jpg &
 picom -f &
 
 #enable tap to click
-#xinput set-prop "ELAN1300:00 04F3:3057 Touchpad" "libinput Tapping Enabled" 1 &
+xinput set-prop "ELAN1300:00 04F3:3057 Touchpad" "libinput Tapping Enabled" 1 &
 
 # loop to restart dwm
 while true; do
