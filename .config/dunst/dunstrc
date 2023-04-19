@@ -210,7 +210,7 @@
     ### Misc/Advanced ###
 
     # rofi path.
-    rofi = /usr/bin/rofi -p dunst:
+    rofi = /usr/bin/dmenu_run -p dunst:
 
     # Browser for opening urls in context menu.
     browser = /usr/bin/firefox -new-tab
