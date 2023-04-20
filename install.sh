@@ -3,8 +3,8 @@ sudo pacman -Syu --needed base-devel nvim w3m github-cli neofetch firefox ranger
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
-cd -
-yay -S ttf-firacode-nerd udiskie networkmanager-dmenu-git 
+cd ..
+yay -S ttf-firacode-nerd udiskie networkmanager-dmenu-git xbanish
 
 # This is used to symlink config files to .config
 ln -s "$PWD/.config/zsh/" $HOME/.config
@@ -18,7 +18,7 @@ ln -s "$PWD/.config/neofetch" $HOME/.config
 ln -s "$PWD/bin" $HOME
 ln -s "$PWD/.xintrc" $HOME
 ln -s "$PWD/X11" $HOME
-ln -s /home/arnav/dotfiles/.config/networkmanager-dmenu/ $HOME/.config
+ln -s "$PWD/.config/networkmanager-dmenu/" $HOME/.config
 
 
 
