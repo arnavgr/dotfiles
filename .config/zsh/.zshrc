@@ -28,10 +28,13 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # zsh-autocompletion
+#source ~/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+# zsh-autosuggestions
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # git-prompt
-source ~/.config/zsh/git-prompt/git-prompt.zsh
+source ~/.config/zsh/git-prompt.zsh/git-prompt.zsh
 
 # aliases
 source ~/.config/zsh/.zsh_alias
