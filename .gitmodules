@@ -1,0 +1,6 @@
+[submodule ".config/zsh/git-prompt.zsh"]
+	path = .config/zsh/git-prompt.zsh
+	url = https://github.com/woefe/git-prompt.zsh
+[submodule ".config/zsh/zsh-autocomplete"]
+	path = .config/zsh/zsh-autocomplete
+	url = https://github.com/marlonrichert/zsh-autocomplete
