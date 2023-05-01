@@ -26,9 +26,9 @@
 #workspaces button.visible {
 }
 
-#workspaces button.focused {
+#workspaces button.active {
   border-radius: 10px;
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(238,138,238,0.8);
 }
 
 #workspaces button.urgent {
@@ -96,4 +96,43 @@
 
 #temperature.critical {
   color: #800020;
+}
+
+#custom-logo {
+
+  font-size: 24px;
+  min-width: 40px;
+  color: #8be9fd;
+}
+
+#custom-updates.updates {
+    color: #00CF52;
+}
+
+#custom-updates.new-updates {
+    color: #4CDD85;
+}
+
+#custom-weather.severe {
+    color: #eb937d;
+}
+
+#custom-weather.Sunny, #custom-weather.MostlySunny, #custom-weather.MostlyClear {
+    color: #c2ca76;
+}
+
+#custom-weather.PartlyCloudy, #custom-weather.Cloudy {
+    color: #c2ddda;
+}
+
+#custom-weather.Showers, #custom-weather.FewShowers, #custom-weather.LightRain, #custom-weather.Thunderstorms, #custom-weather.ScatteredThunderstorms {
+    color: #5aaca5;
+}
+
+#custom-weather.showyIcyDay, #custom-weather.snowyIcyNight {
+    color: #d6e7e5;
+}
+
+#custom-weather.default {
+    color: #dbd9d8;
 }

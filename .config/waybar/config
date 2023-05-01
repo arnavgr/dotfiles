@@ -4,33 +4,31 @@
     "height": 14,
     "width": 1900,
     "margin": "5, 0, 2, 0",
-    "modules-left": ["wlr/workspaces", "sway/mode", "cpu", "memory", "disk", "custom/recorder", "custom/audiorec"],
-    "modules-center": ["wlr/taskbar"],
-    "modules-right": ["tray", "backlight", "idle_inhibitor", "pulseaudio", "network", "battery", "clock"],
+    "modules-left": ["custom/logo","wlr/workspaces"],
+    "modules-center": ["clock", "custom/weather"],
+    "modules-right": ["tray", "idle_inhibitor", "custom/updates", "cpu", "memory" , "backlight", "pulseaudio", "network", "battery"],
     "sway/mode": {
         "format": " {}"
     },
 
     "wlr/workspaces": {
-    	"on-click": "activate",
-        "format": "{icon}",
-        "format-icons": {
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8",
-            "9": "9",
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
+         "on-click": "activate",
+         "format": "{icon}",
+         "format-icons": {
+    //         "urgent": "",
+    //         "default": "",
+    //         "active": ""
+                 }
     },
+  //  "persistent_workspaces": {
+   //         "1": [],
+   //         "2": [],
+   //         "3": [],
+   //         "4": [],
+   //      }
+   //  },
     
-    "sway/window": {
+     "sway/window": {
         "max-length": 25,
         "tooltip": false
     },
@@ -38,7 +36,7 @@
     "wlr/taskbar": {
     "format": "{icon}",
     "icon-size": 14,
-    "icon-theme": "Papirus-Dark",
+    "icon-theme": "Dracula",
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
@@ -48,8 +46,8 @@
         "interval": 1,
         "locale": "C",
         "tooltip": true, 
-        "format": "{:%H:%M:%S}",
-        "format-alt": " {:%a, %Y-%b-%d}" // Icon: calendar-alt
+        "format-alt": "{:%H:%M:%S}",
+        "format": " {:%a %d %B,  %I:%M %p}"  
     },
 
     "cpu": {
@@ -128,7 +126,7 @@
     "backlight": {
         "device": "intel_backlight",
         "format": "{icon} {percent}%",
-        "format-icons": ["☀️", ""],
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
         "on-scroll-down": "brightnessctl -c backlight set 1%-",
         "on-scroll-up": "brightnessctl -c backlight set +1%"
     },
@@ -159,22 +157,31 @@
       }
     },
 
-    "custom/recorder": {
-        "format": " Rec",
-        "format-disabled": " Off-air", //An empty format will hide the module.
-        "return-type": "json",
-        "interval": 1,
-        "exec": "echo '{\"class\": \"recording\"}'",
-        "exec-if": "pgrep wf-recorder",
-    },
+     "custom/logo": {
+        "format": " <span rise='1000'>{icon}</span>",
+        "format-icons": " ",
+        "tooltip": false
+        }
+      },
 
-    "custom/audiorec": {
-        "format": "♬ Rec",
-        "format-disabled": "♬ Off-air", //An empty format will hide the module.
+      "custom/weather": {
+        "exec": "python ~/.config/waybar/bin/weather.py -c ~/.config/waybar/bin/.env",
+        "restart-interval": 300,
         "return-type": "json",
-        "interval": 1,
-        "exec": "echo '{\"class\": \"audio recording\"}'",
-        "exec-if": "pgrep ffmpeg",
-    },
+        "on-click": "~/.config/waybar/bin/weather.py -c ~/.config/waybar/bin/.env"
+       } 
+      },
+      
+      "custom/updates": {
+		    "format": " <span rise='1000'>{icon}</span>",
+		    "format-icons": ["", ""],
+		    "interval": 10,
+		    "return-type":"json",
+		    "exec": "~/.config/waybar/bin/updbar.sh",
+		    "on-click": "[ -x /usr/bin/fuzzel ] && ~/.config/waybar/bin/chckpds.sh",
+		    "on-click-right": "checkupdates > /tmp/upd_versions ; cat /tmp/upd_versions | wc -l >> /tmp/updates",
+		    "tooltip": true
+        }
+	    },
     
 }
