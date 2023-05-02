@@ -173,7 +173,7 @@
       },
       
       "custom/updates": {
-		    "format": " <span rise='1000'>{icon}</span>",
+		    "format": "{icon}",
 		    "format-icons": ["", ""],
 		    "interval": 10,
 		    "return-type":"json",
