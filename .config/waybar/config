@@ -6,7 +6,7 @@
     "margin": "5, 0, 2, 0",
     "modules-left": ["custom/logo","wlr/workspaces"],
     "modules-center": ["clock", "custom/weather"],
-    "modules-right": ["tray", "idle_inhibitor", "custom/updates", "cpu", "memory" , "backlight", "pulseaudio", "network", "battery"],
+    "modules-right": ["tray", "custom/updates", "idle_inhibitor", "cpu", "memory" , "backlight", "pulseaudio", "network", "battery"],
     "sway/mode": {
         "format": " {}"
     },
