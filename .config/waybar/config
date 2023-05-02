@@ -70,7 +70,7 @@
     "battery": {
     	"bat": "BAT0",
         "states": {
-            // "good": 95,
+            // "good": 80,
             "warning": 30,
             "critical": 15
         },
@@ -177,8 +177,8 @@
 		    "format-icons": ["", ""],
 		    "interval": 10,
 		    "return-type":"json",
-		    "exec": "~/.config/waybar/bin/updbar.sh",
-		    "on-click": "[ -x /usr/bin/fuzzel ] && ~/.config/waybar/bin/chckpds.sh",
+		    "exec": "~/.local/bin/updbar.sh",
+		    "on-click": "[ -x /usr/bin/fuzzel ] && ~/.local/bin/chckpds.sh",
 		    "on-click-right": "checkupdates > /tmp/upd_versions ; cat /tmp/upd_versions | wc -l >> /tmp/updates",
 		    "tooltip": true
         }
