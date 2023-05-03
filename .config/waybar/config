@@ -28,11 +28,17 @@
    //      }
    //  },
     
-     "sway/window": {
-        "max-length": 25,
-        "tooltip": false
-    },
-    
+     "custom/updates": {
+		    "format": "{icon}",
+		    "format-icons": ["", ""],
+		    "interval": 10,
+		    "return-type":"json",
+		    "exec": "~/.local/bin/updbar.sh",
+		    "on-click": "[ -x /usr/bin/fuzzel ] && ~/.local/bin/chckpds.sh",
+		    "on-click-right": "checkupdates > /tmp/upd_versions ; cat /tmp/upd_versions | wc -l >> /tmp/updates",
+		    "tooltip": true
+	  },    
+
     "wlr/taskbar": {
     "format": "{icon}",
     "icon-size": 14,
@@ -162,7 +168,7 @@
         "format-icons": " ",
         "tooltip": false
         }
-      },
+      },      
 
       "custom/weather": {
         "exec": "python ~/.config/waybar/bin/weather.py -c ~/.config/waybar/bin/.env",
@@ -172,16 +178,6 @@
        } 
       },
       
-      "custom/updates": {
-		    "format": "{icon}",
-		    "format-icons": ["", ""],
-		    "interval": 10,
-		    "return-type":"json",
-		    "exec": "~/.local/bin/updbar.sh",
-		    "on-click": "[ -x /usr/bin/fuzzel ] && ~/.local/bin/chckpds.sh",
-		    "on-click-right": "checkupdates > /tmp/upd_versions ; cat /tmp/upd_versions | wc -l >> /tmp/updates",
-		    "tooltip": true
-        }
-	    },
+
     
 }

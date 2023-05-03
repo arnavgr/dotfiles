@@ -1,0 +1,19 @@
+#!/bin/bash
+
+bat=$(cat /sys/class/power_supply/BAT0/capacity)
+bat_status=$(acpi | grep -c Charging)
+
+if [ "$bat_status" -eq 1 ]; then
+  notify-send '  Charging'
+fi
+
+if [ "$bat" -le 20 ]; then
+  notify-send -u critical "  battery low"
+fi
+
+if [ "$bat" -ge 100 ]; then
+  notify-send "  battery full" 
+
+fi
+
+
