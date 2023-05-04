@@ -8,7 +8,7 @@
 
 #waybar {
   margin-top: 14px;
-  background: rgb(40, 42, 54);
+  background-color: rgb(40, 42, 54); 
   border-radius: 12px;
   border: 2px solid #bd93f9;
 }
@@ -62,6 +62,11 @@
   background-color: transparent;
 }
 
+#custom-updates, #idle_inhibitor {
+  font-size: 15px;
+
+}
+
 #clock {
   margin: 4px 2px;
 }
@@ -111,28 +116,4 @@
 
 #custom-updates.new-updates {
     color: #4CDD85;
-}
-
-#custom-weather.severe {
-    color: #eb937d;
-}
-
-#custom-weather.Sunny, #custom-weather.MostlySunny, #custom-weather.MostlyClear {
-    color: #c2ca76;
-}
-
-#custom-weather.PartlyCloudy, #custom-weather.Cloudy {
-    color: #c2ddda;
-}
-
-#custom-weather.Showers, #custom-weather.FewShowers, #custom-weather.LightRain, #custom-weather.Thunderstorms, #custom-weather.ScatteredThunderstorms {
-    color: #5aaca5;
-}
-
-#custom-weather.showyIcyDay, #custom-weather.snowyIcyNight {
-    color: #d6e7e5;
-}
-
-#custom-weather.default {
-    color: #dbd9d8;
 }

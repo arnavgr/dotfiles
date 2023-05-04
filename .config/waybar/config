@@ -3,9 +3,10 @@
     "position": "top",
     "height": 14,
     "width": 1900,
+    "spacing": 4,
     "margin": "5, 0, 2, 0",
     "modules-left": ["custom/logo","wlr/workspaces"],
-    "modules-center": ["clock", "custom/weather"],
+    "modules-center": ["clock"],
     "modules-right": ["tray", "custom/updates", "idle_inhibitor", "cpu", "memory" , "backlight", "pulseaudio", "network", "battery"],
     "sway/mode": {
         "format": " {}"
@@ -170,14 +171,4 @@
         }
       },      
 
-      "custom/weather": {
-        "exec": "python ~/.config/waybar/bin/weather.py -c ~/.config/waybar/bin/.env",
-        "restart-interval": 300,
-        "return-type": "json",
-        "on-click": "~/.config/waybar/bin/weather.py -c ~/.config/waybar/bin/.env"
-       } 
-      },
-      
-
-    
 }
