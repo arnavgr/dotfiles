@@ -83,7 +83,7 @@ configuration {
 
 	/*---------- Misc setting ----------*/
 	terminal: "rofi-sensible-terminal";
-	font: "FiraCode Nerd Font 12";
+	font: "BigBlueTermPlus Nerd Font 12";
 	sort: false;
 	threads: 0;
 	click-to-exit: true;

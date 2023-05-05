@@ -8,5 +8,5 @@
  **/
 
 * {
-    font: "BigBlue_TerminalPlus Nerd Font 10";
+    font: "BigBlueTermPlus Nerd Font 10";
 }
