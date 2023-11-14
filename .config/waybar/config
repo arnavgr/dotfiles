@@ -31,11 +31,11 @@
     
      "custom/updates": {
 		    "format": "{icon}",
-		    "format-icons": ["", ""],
+		    "format-icons": ["󰏗", "󰏖"],
 		    "interval": 10,
 		    "return-type":"json",
-		    "exec": "~/.local/bin/updbar.sh",
-		    "on-click": "[ -x /usr/bin/fuzzel ] && ~/.local/bin/chckpds.sh",
+		    "exec": "~/.config/waybar/bin/updbar.sh",
+		    "on-click": "[ -x /usr/bin/fuzzel ] && ~/.config/waybar/bin/chckpds.sh",
 		    "on-click-right": "checkupdates > /tmp/upd_versions ; cat /tmp/upd_versions | wc -l >> /tmp/updates",
 		    "tooltip": true
 	  },    
@@ -100,11 +100,11 @@
         "format": "{icon}",
         "format-alt": "{ipaddr}/{cidr} {icon}",
         "format-alt-click": "click-right",
-        "format-wifi": "直 ({signalStrength}%)",
+        "format-wifi": " ({signalStrength}%)",
         "format-icons": {
-            "wifi": ["睊", "直" ,""],
-            "ethernet": [""],
-            "disconnected": [""]
+            "wifi": ["󰤟", "󰤢","󰤥","󰤨"],
+            "ethernet": ["󰈀"],
+            "disconnected": [""]
         },
         "on-click": "foot -e nmtui",
         "tooltip-format": "{ifname}: {ipaddr}",

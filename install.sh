@@ -15,17 +15,17 @@ echo -e "this script will install all programs and configs related to the window
 read confirm
 
 if [[ $confirm == "Y" || $confirm == "y" ]]; then
-  sudo pacman -Syu --needed base-devel nvim w3m github-cli neofetch firefox ranger zsh htop feh pamixer pavucontrol flatpak ueberzug atool poppler imagemagick highlight zathura-pdf-poppler brightnessctl dunst pacman-contrib acpi gvim mpv ncmpcpp bluez bluez-utils cups system-config-printer blueman bluetoothctl zip unzip unrar nm-connection-editor --no-confirm
+  sudo pacman -Syu --needed base-devel neovim w3m github-cli neofetch firefox ranger zsh htop feh pamixer pavucontrol flatpak ueberzug atool poppler imagemagick highlight zathura-pdf-poppler brightnessctl dunst pacman-contrib acpi gvim mpv ncmpcpp bluez bluez-utils cups system-config-printer blueman zip unzip unrar nm-connection-editor 
   git clone https://aur.archlinux.org/yay.git
   cd yay
   makepkg -si --noconfirm
   cd ..
-  yay -S udiskie aurutils nwg-look timeshift envycontrol
+  yay -S udiskie aurutils nwg-look timeshift envycontrol --noconfirm
   
   if [ $wm = 1 ]; then
 
     # This install xorg packages along with aur packages
-    sudo pacman -Syu xorg maim xclip xdotool picom libxcb arandr nvidia nvidia-settings nvidia-utils --no-confirm
+    sudo pacman -Syu xorg maim xclip xdotool picom libxcb arandr nvidia nvidia-settings nvidia-utils --noconfirm
     yay -S networkmanager-dmenu-git xbanish ttf-firacode-nerd
   
     # This clones all my sukcless programs  
@@ -41,23 +41,23 @@ if [[ $confirm == "Y" || $confirm == "y" ]]; then
     cd slock && make && sudo make clean install && cd ..
 
     # This symlinks all configs to .config  
-    ln -s "$PWD/.config/zsh/" $HOME/.config
-    ln -s "$PWD/.zshenv" $HOME
-    ln -s "$PWD/.config/nvim" $HOME/.config
-    ln -s "$PWD/.config/ranger" $HOME/.config
-    ln -s "$PWD/.config/zathura" $HOME/.config
-    ln -s "$PWD/.config/picom" $HOME/.config
-    ln -s "$PWD/.config/dunst" $HOME/.config
-    ln -s "$PWD/.config/neofetch" $HOME/.config
-    ln -s "$PWD/bin" $HOME
-    ln -s "$PWD/.xintrc" $HOME
-    ln -s "$PWD/.config/networkmanager-dmenu/" $HOME/.config
+    ln -sf "$PWD/.config/zsh/" $HOME/.config
+    ln -sf "$PWD/.zshenv" $HOME
+    ln -sf "$PWD/.config/nvim" $HOME/.config
+    ln -sf "$PWD/.config/ranger" $HOME/.config
+    ln -sf "$PWD/.config/zathura" $HOME/.config
+    ln -sf "$PWD/.config/picom" $HOME/.config
+    ln -sf "$PWD/.config/dunst" $HOME/.config
+    ln -sf "$PWD/.config/neofetch" $HOME/.config
+    ln -sf "$PWD/bin" $HOME
+    ln -sf "$PWD/.xintrc" $HOME
+    ln -sf "$PWD/.config/networkmanager-dmenu/" $HOME/.config
 
   elif [ $wm = 2 ]; then
   
     # This install all packages along with aur
-    sudo pacman -Syu fuzzel qt5-wayland qt5ct libva linux-headers nvidia-dkms hyprpaper foot ttf-bigblueterminal-nerd
-    yay -S hyprland-nvidia-git aur-utils rofi-lbonn-wayland-git waybar-hyprland-git libva-nvidia-driver-git
+    sudo pacman -Syu fuzzel qt5-wayland qt5ct libva linux-headers nvidia-dkms hyprpaper foot ttf-bigblueterminal-nerd wl-clipboard xdg-desktop-portal-hyprland --noconfirm
+    yay -S hyprland-nvidia-git rofi-lbonn-wayland-git waybar-hyprland-git libva-nvidia-driver-git --noconfirm
 
     # This configures nvidia to work on hyprland
     sudo sed -i '$s/$/ nvidia_drm.modeset=1/' /boot/loader/entries/*linux.conf*        
@@ -66,20 +66,21 @@ if [[ $confirm == "Y" || $confirm == "y" ]]; then
     echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf 
 
 # This symlinks all configs to .config  
-  ln -s "$PWD/.config/zsh/" $HOME/.config
-  ln -s "$PWD/.zshenv" $HOME
-  ln -s "$PWD/.config/nvim" $HOME/.config
-  ln -s "$PWD/.config/ranger" $HOME/.config
-  ln -s "$PWD/.config/zathura" $HOME/.config
-  ln -s "$PWD/.config/foot" $HOME/.config
-  ln -s "$PWD/.config/dunst" $HOME/.config
-  ln -s "$PWD/.config/neofetch" $HOME/.config
-  ln -s "$PWD/bin" $HOME
-  ln -s "$PWD/.config/hypr" $HOME/.config
-  ln -s "$PWD/.config/rofi/" $HOME/.config
-  ln -s "$PWD/.config/waybar/" $HOME/.config
+  ln -sf "$PWD/.config/zsh/" $HOME/.config
+  ln -sf "$PWD/.zshenv" $HOME
+  ln -sf "$PWD/.config/nvim" $HOME/.config
+  ln -sf "$PWD/.config/ranger" $HOME/.config
+  ln -sf "$PWD/.config/zathura" $HOME/.config
+  ln -sf "$PWD/.config/foot" $HOME/.config
+  ln -sf "$PWD/.config/dunst" $HOME/.config
+  ln -sf "$PWD/.config/neofetch" $HOME/.config
+  ln -sf "$PWD/bin" $HOME
+  ln -sf "$PWD/.config/hypr" $HOME/.config
+  ln -sf "$PWD/.config/rofi/" $HOME/.config
+  ln -sf "$PWD/.config/waybar/" $HOME/.config
 
- 
+  cp -r .themes ~/ 
+  cp -r .icons ~/ 
   fi
 fi
 
