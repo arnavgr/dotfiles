@@ -16,11 +16,11 @@ if [[ $distro = 1 ]]; then
   
   read ans
 
-if [[ $ans == "Y" || $ans == "y" ]]; then
+  if [[ $ans == "Y" || $ans == "y" ]]; then
 
   sudo xbps-install xorg libXft-devel libX11-devel libXinerama-devel libXrandr-devel imlib2-devel NetworkManager neovim w3m github-cli neofetch firefox ranger zsh htop feh pamixer pavucontrol flatpak ueberzug atool poppler ImageMagick highlight zathura-pdf-poppler brightnessctl dunst acpi gvim mpv ncmpcpp bluez cups system-config-printer blueman zip unzip unrar void-repo-nonfree &&
-	sudo xbps-install -Su &&
-	sudo xbps-install maim xclip xdotool picom libxcb arandr nvidia tlp thermald nix elogind chrony lxappearance polkit-elogind
+  sudo xbps-install -Su &&
+  sudo xbps-install maim xclip xdotool picom libxcb arandr nvidia tlp thermald nix elogind chrony lxappearance polkit-elogind
 
   # This clones all my sukcless programs  
   git clone https://www.github.com/arnavgr/dwm
@@ -46,6 +46,10 @@ if [[ $ans == "Y" || $ans == "y" ]]; then
   ln -sf "$PWD/bin" $HOME
   ln -sf "$PWD/.xintrc" $HOME
   ln -sf "$PWD/.config/networkmanager-dmenu/" $HOME/.config
+  cp -r .themes ~/ 
+  cp -r .icons ~/
+
+  fi
 
 else 
 
@@ -95,6 +99,8 @@ else
       ln -sf "$PWD/bin" $HOME
       ln -sf "$PWD/.xintrc" $HOME
       ln -sf "$PWD/.config/networkmanager-dmenu/" $HOME/.config
+      cp -r .themes ~/ 
+      cp -r .icons ~/
 
     elif [ $wm = 2 ]; then
   
@@ -121,13 +127,13 @@ else
   ln -sf "$PWD/.config/hypr" $HOME/.config
   ln -sf "$PWD/.config/rofi/" $HOME/.config
   ln -sf "$PWD/.config/waybar/" $HOME/.config
-
   cp -r .themes ~/ 
-  cp -r .icons ~/ 
+  cp -r .icons ~/
+
   fi
+ fi
 fi
-fi
-fi
+
 
 echo -e "installation successfull do you want to reboot(Y/n)"
 
