@@ -1,15 +1,13 @@
 #!/bin/bash
 
-pkg update
-
-pkg upgrade
+apt update && apt upgrade
 
 pkg autoclean
 pkg clean
 
 termux-setup-storage
 
-pkg install curl wget git neovim python grep htop openssh zsh gh neofetch
+apt install curl wget git neovim python grep htop openssh zsh gh neofetch
 
 ln -s zsh ~/.config/
 
