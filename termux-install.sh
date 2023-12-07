@@ -9,7 +9,6 @@ termux-setup-storage
 
 apt install curl wget git neovim python grep htop openssh zsh gh neofetch
 
-ln -s zsh ~/.config/
+ln -sf "$PWD/.config/zsh/" $HOME/.config
 
-ln -s nvim ~/.config/
-
+ln -sf "$PWD/.config/nvim/" $HOME/.config
