@@ -25,10 +25,9 @@ print_info() {
     # info "Icons" icons
     info "Terminal" term
     # info "Terminal Font" term_font
-     info "Theme" icons
     # info "CPU" cpu
     # info "GPU" gpu
-    # info "Memory" memory
+    info "Memory" memory
 
     # info "GPU Driver" gpu_driver  # Linux/macOS only
     # info "CPU Usage" cpu_usage
@@ -152,7 +151,7 @@ memory_unit="mib"
 # on:   '998 (pacman), 8 (flatpak), 4 (snap)'
 # tiny: '908 (pacman, flatpak, snap)'
 # off:  '908'
-package_managers="tiny"
+package_managers="off"
 
 
 # Shell
@@ -321,7 +320,7 @@ refresh_rate="off"
 # Example:
 # on:  'Numix, Adwaita'
 # off: 'Numix [GTK2], Adwaita [GTK3]'
-gtk_shorthand="on"
+gtk_shorthand="off"
 
 
 # Enable/Disable gtk2 Theme / Icons / Font
@@ -768,7 +767,7 @@ image_source="auto"
 #       Slackware, SunOS, LinuxLite, OpenSUSE, Raspbian,
 #       postmarketOS, and Void have a smaller logo variant.
 #       Use '{distro name}_small' to use the small variants.
-ascii_distro="void_small" # Change it to your distro's small.
+ascii_distro="arch_small" # Change it to your distro's small.
 
 # Ascii Colors
 #

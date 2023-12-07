@@ -1,13 +1,22 @@
 #! /bin/bash
 
-chosen=$(printf "  Power Off\n  Restart\n  Lock\n  Logout\n鈴 Sleep" | dmenu -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'FiraCode Nerd Font-12' -p 'exitmenu' -h 22) 
+chosen=$(printf "  Power Off\n  Restart\n  Lock\n󰍃  Logout\n󰒲  Sleep" | dmenu -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'FiraCode Nerd Font-12' -p 'exitmenu' -h 22) 
+void=$(uname -a | grep -c void)
+if [ "$void" -eq 1 ]; then
+  case "$chosen" in
+  "  Power Off") loginctl poweroff ;;
+  "  Restart") loginctl reboot ;;
+  "  Lock") slock ;;
+  "󰍃  Logout") killall xinit ;;
+  "󰒲  Sleep") loginctl suspend ;;
+  esac
 
-case "$chosen" in
+else
+ case "$chosen" in
   "  Power Off") poweroff ;;
   "  Restart") reboot ;;
   "  Lock") slock ;;
-  "  Logout") killall xinit ;;
-  "鈴 Sleep") systemctl suspend ;;
-esac
-
-
+  "󰍃  Logout") killall xinit ;;
+  "󰒲 Sleep") systemctl suspend ;;
+  esac
+fi

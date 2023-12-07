@@ -18,9 +18,9 @@ if [[ $distro = 1 ]]; then
 
 if [[ $ans == "Y" || $ans == "y" ]]; then
 
-  sudo xbps-install xorg-minimal libXft-devel libX11-devel libXinerama-devel networkmanager neovim w3m github-cli neofetch firefox ranger zsh htop feh pamixer pavucontrol flatpak ueberzug atool poppler imagemagick highlight zathura-pdf-poppler brightnessctl dunst acpi gvim mpv ncmpcpp bluez cups system-config-printer blueman zip unzip unrar void-repo-nonfree
-  sudo xbps-install maim xclip xdotool picom libxcb arandr nvidia nix
-  sudo ln -s /etc/sv/nix-daemon /var/service
+  sudo xbps-install xorg-minimal libXft-devel libX11-devel libXinerama-devel networkmanager neovim w3m github-cli neofetch firefox ranger zsh htop feh pamixer pavucontrol flatpak ueberzug atool poppler imagemagick highlight zathura-pdf-poppler brightnessctl dunst acpi gvim mpv ncmpcpp bluez cups system-config-printer blueman zip unzip unrar void-repo-nonfree &&
+	sudo xbps-install -Su &&
+	sudo xbps-install maim xclip xdotool picom libxcb arandr nvidia 
 
   # This clones all my sukcless programs  
   git clone https://www.github.com/arnavgr/dwm

@@ -6,7 +6,7 @@ if [ "$bat_status" -eq 1 ]; then
   echo   $bat 
 
 elif [ "$bat" -gt 0 ] && [ "$bat" -le 25 ]; then
-  echo "  $bat"
+  echo "  $bat"  
 
 elif [ "$bat" -gt 25 ] && [ "$bat" -le 50 ]; then
   echo "  $bat"
@@ -15,7 +15,10 @@ elif [ "$bat" -gt 50 ] &&  [ "$bat" -le 75 ]; then
   echo "  $bat"
 
 elif [ "$bat" -gt 75 ] &&  [ "$bat" -le 100 ]; then
-  echo "  $bat" 
+  echo "  $bat"
+
+elif [ "$bat" -ge 100 ] && [ "$bat_status" -eq 1 ]; then
+  dunstify "battery full please plug out charger"
 
 fi
 
