@@ -1,11 +1,11 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 14,
+    "height": 35,
     "width": 1900,
     "spacing": 4,
     "margin": "5, 0, 2, 0",
-    "modules-left": ["custom/logo","wlr/workspaces"],
+    "modules-left": ["custom/logo","hyprland/workspaces"],
     "modules-center": ["clock"],
     "modules-right": ["tray", "custom/updates", "idle_inhibitor", "cpu", "memory" , "backlight", "pulseaudio", "network", "battery"],
     "sway/mode": {
@@ -14,21 +14,23 @@
 
     "wlr/workspaces": {
          "on-click": "activate",
-         "format": "{icon}",
-         "format-icons": {
-    //         "urgent": "",
-    //         "default": "",
-    //         "active": ""
+         "active-only":false,
+         "all-outputs": false,    
+      //   "persistent_workspaces": {
+      //      "1": [],
+      //      "2": [],
+      //      "3": [],
+      //      "4": [],
+      //   }
+     
+      "format": "{icon}",
+      "format-icons": {
+        "urgent": "",
+        "default": "",
+        "active": ""
                  }
     },
-  //  "persistent_workspaces": {
-   //         "1": [],
-   //         "2": [],
-   //         "3": [],
-   //         "4": [],
-   //      }
-   //  },
-    
+      
      "custom/updates": {
 		    "format": "{icon}",
 		    "format-icons": ["󰏗", "󰏖"],
@@ -86,7 +88,7 @@
         "format-plugged": "  {capacity}%",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": [" ", " ", " ", " ", " "]
         //"format-alt": "{time}",
     },
 
