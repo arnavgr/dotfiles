@@ -1,3 +1,5 @@
 .config/zsh/.zsh_history
 
 .config/zsh/.zcompdump
+
+.config/neofetch/config.conf
