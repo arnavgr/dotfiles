@@ -39,10 +39,6 @@ source ~/.config/zsh/git-prompt.zsh/git-prompt.zsh
 # aliases
 source ~/.config/zsh/.zsh_alias
 
-# adb and fastboot for android
-if [ -d "$HOME/adb-fastboot/platform-tools" ] ; then
- export PATH="$HOME/adb-fastboot/platform-tools:$PATH"
-fi
 
 
 
