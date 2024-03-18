@@ -26,15 +26,18 @@ ln -sf "$PWD/.config/nvim/" $HOME/.config
 ln -sf "$PWD/.config/ranger/" $HOME/.config
 ln -sf "$PWD/.config/neofetch/" $HOME/.config
 
+# Applying android neofetch
+cp $HOME/.config/neofetch/android $HOME/.config/neofetch/config.conf
+
 # Copy zsh environment configuration
 cp .zshenv $HOME
 
 # Change default shell to zsh
 chsh -s zsh
 
-# Install Termux Notion
-curl -fsSL https://raw.githubusercontent.com/arnavgr/termux-notion/main/install.sh | bash
+# Install Termux-NF
+curl -fsSL https://raw.githubusercontent.com/arnavgr/termux-nf/main/install.sh | bash
 
-# Run getnf command to set up Termux Notion
+# Run getnf command to set up Termux-NF
 getnf
 
