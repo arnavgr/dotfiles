@@ -10,3 +10,6 @@
 [submodule ".themes/gtk"]
 	path = .themes/gtk
 	url = https://github.com/dracula/gtk
+[submodule ".config/zsh/zsh-autosuggestions"]
+	path = .config/zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
