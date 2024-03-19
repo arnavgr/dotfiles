@@ -30,7 +30,7 @@ ln -sf "$PWD/.config/neofetch/" $HOME/.config
 cp $HOME/.config/neofetch/android $HOME/.config/neofetch/config.conf
 
 # Applying Dracula Theme on Termux
-cp color.properties $HOME/.termux
+cp colors.properties $HOME/.termux
 
 # Copy zsh environment configuration
 cp .zshenv $HOME
