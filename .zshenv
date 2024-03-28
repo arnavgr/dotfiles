@@ -7,8 +7,8 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 
 # adding ~/bin to $PATH
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
 fi
 
 # startx if tty1

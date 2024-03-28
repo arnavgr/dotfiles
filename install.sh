@@ -1,144 +1,127 @@
-#!/bin/sh
+#!/bin/bash
 
-# Arch/Void Window Manager Install Script(nvidia-only, dracula colorscheme)
+# Arch/Void Window Manager Install Script (Nvidia-only, Dracula colorscheme)
 # Source: https://www.github.com/arnavgr/dotfiles
 # Author: Arnav Grover
 
+# Main function to handle installation process
+main() {
+    start_installation
+    prompt_reboot
+}
 
-# ask what you want to install
-echo -e "which distro are you using\n 1)void \n 2)arch"
+# Function to start the installation process
+start_installation() {
+    echo -e "Which distribution are you using?\n1) Void\n2) Arch"
+    read -p "Enter number: " distro
 
-read -p "enter number : " distro
+    if [[ $distro == 1 ]]; then
+        echo -e "This script will install dwm on your Void Linux system.\nIt will also install all Nvidia drivers and settings required. Are you sure you want to continue? (Y/n):"
+        read ans
 
-if [[ $distro = 1 ]]; then
+        if [[ $ans == "Y" || $ans == "y" ]]; then
+            install_dwm_void
+        fi
+    elif [[ $distro == 2 ]]; then
+        echo -e "What do you want to install?\n1) dwm (Xorg)\n2) hyprland (Wayland)"
+        read -p "Enter number: " wm
 
-  echo -e "this script will install dwm on your voidlinux system\nit will also install all nvidia drivers and settings required are you sure you want to continue(Y/n):"
-  
-  read ans
+        echo -e "This script will install all programs and configs related to the window manager you choose.\nIt will also install all Nvidia drivers and settings required. Are you sure you want to continue? (Y/n):"
+        read confirm
 
-  if [[ $ans == "Y" || $ans == "y" ]]; then
+        if [[ $confirm == "Y" || $confirm == "y" ]]; then
+            if [[ $wm == 1 ]]; then
+                install_dwm_arch
+            elif [[ $wm == 2 ]]; then
+                install_hyprland_arch
+            fi
+        fi
+    fi
+}
 
-  sudo xbps-install xorg libXft-devel libX11-devel libXinerama-devel libXrandr-devel imlib2-devel NetworkManager neovim w3m github-cli neofetch firefox ranger zsh htop feh pamixer pavucontrol flatpak ueberzug atool poppler ImageMagick highlight zathura-pdf-poppler brightnessctl dunst acpi gvim mpv ncmpcpp bluez cups system-config-printer blueman zip unzip unrar void-repo-nonfree &&
-  sudo xbps-install -Su &&
-  sudo xbps-install maim xclip xdotool picom libxcb arandr nvidia tlp thermald nix elogind chrony lxappearance polkit-elogind
+# Function to prompt for reboot
+prompt_reboot() {
+    echo -e "Installation successful. Do you want to reboot? (Y/n)"
+    read reboot
 
-  # This clones all my sukcless programs  
-  git clone https://www.github.com/arnavgr/dwm
-  git clone https://www.github.com/arnavgr/st
-  git clone https://www.github.com/arnavgr/dmenu
-  git clone https://www.github.com/arnavgr/slock
+    if [[ $reboot == "Y" || $reboot == "y" ]]; then
+        reboot
+    fi
+}
 
-  # This installs dwm along with all suckless programs
-  cd dwm && make && sudo make clean install && cd ..
-  cd st && make && sudo make clean install && cd ..
-  cd dmenu && make && sudo make clean install && cd ..
-  cd slock && make && sudo make clean install && cd ..
+# Function to install common packages
+install_common_packages() {
+    sudo pacman -Syu --needed base-devel neovim w3m github-cli neofetch firefox ranger zsh htop feh pamixer pavucontrol flatpak ueberzug atool poppler imagemagick highlight zathura-pdf-poppler brightnessctl dunst pacman-contrib acpi gvim mpv ncmpcpp bluez bluez-utils cups system-config-printer blueman zip unzip unrar nm-connection-editor
+}
 
-  # This symlinks all configs to .config  
-  ln -sf "$PWD/.config/zsh/" $HOME/.config
-  ln -sf "$PWD/.zshenv" $HOME
-  ln -sf "$PWD/.config/nvim" $HOME/.config
-  ln -sf "$PWD/.config/ranger" $HOME/.config
-  ln -sf "$PWD/.config/zathura" $HOME/.config
-  ln -sf "$PWD/.config/picom" $HOME/.config
-  ln -sf "$PWD/.config/dunst" $HOME/.config
-  ln -sf "$PWD/.config/neofetch" $HOME/.config
-  ln -sf "$PWD/bin" $HOME
-  ln -sf "$PWD/.xintrc" $HOME
-  ln -sf "$PWD/.config/networkmanager-dmenu/" $HOME/.config
-  cp -r .themes ~/ 
-  cp -r .icons ~/
-
-  fi
-
-else 
-
-  echo -e "what do you want to install\n 1) dwm(xorg)\n 2)hyprland(wayland)"
-
-  read -p "enter number : " wm
-
-  echo -e "this script will install all programs and configs related to the window manager you choose\nit will also install all nvidia drivers and settings required are you sure you want to continue(Y/n):"
-
-  read confirm
-
-  if [[ $confirm == "Y" || $confirm == "y" ]]; then
-    sudo pacman -Syu --needed base-devel neovim w3m github-cli neofetch firefox ranger zsh htop feh pamixer pavucontrol flatpak ueberzug atool poppler imagemagick highlight zathura-pdf-poppler brightnessctl dunst pacman-contrib acpi gvim mpv ncmpcpp bluez bluez-utils cups system-config-printer blueman zip unzip unrar nm-connection-editor 
+# Function to install AUR helper
+install_aur_helper() {
     git clone https://aur.archlinux.org/yay.git
-    cd yay
+    cd yay || exit
     makepkg -si --noconfirm
     cd ..
-    yay -S udiskie aurutils nwg-look timeshift envycontrol --noconfirm
-  
-    if [ $wm = 1 ]; then
+}
 
-      # This install xorg packages along with aur packages
-      sudo pacman -Syu xorg maim xclip xdotool picom libxcb arandr nvidia nvidia-settings nvidia-utils --noconfirm
-      yay -S networkmanager-dmenu-git xbanish ttf-firacode-nerd
-  
-      # This clones all my sukcless programs  
-      git clone https://www.github.com/arnavgr/dwm
-      git clone https://www.github.com/arnavgr/st
-      git clone https://www.github.com/arnavgr/dmenu
-      git clone https://www.github.com/arnavgr/slock
+# Function to install Xorg packages
+install_xorg_packages() {
+    sudo pacman -Syu xorg maim xclip xdotool picom libxcb arandr nvidia nvidia-settings nvidia-utils --noconfirm
+    yay -S networkmanager-dmenu-git xbanish ttf-firacode-nerd
+}
 
-      # This installs dwm along with all suckless programs
-      cd dwm && make && sudo make clean install && cd ..
-      cd st && make && sudo make clean install && cd ..
-      cd dmenu && make && sudo make clean install && cd ..
-      cd slock && make && sudo make clean install && cd ..
+# Function to install Hyprland packages
+install_hyprland_packages() {
+    sudo pacman -Syu fuzzel qt5-wayland qt5ct libva linux-headers nvidia-dkms hyprpaper foot ttf-bigblueterminal-nerd wl-clipboard xdg-desktop-portal-hyprland
+}
 
-      # This symlinks all configs to .config  
-      ln -sf "$PWD/.config/zsh/" $HOME/.config
-      ln -sf "$PWD/.zshenv" $HOME
-      ln -sf "$PWD/.config/nvim" $HOME/.config
-      ln -sf "$PWD/.config/ranger" $HOME/.config
-      ln -sf "$PWD/.config/zathura" $HOME/.config
-      ln -sf "$PWD/.config/picom" $HOME/.config
-      ln -sf "$PWD/.config/dunst" $HOME/.config
-      ln -sf "$PWD/.config/neofetch" $HOME/.config
-      ln -sf "$PWD/bin" $HOME
-      ln -sf "$PWD/.xintrc" $HOME
-      ln -sf "$PWD/.config/networkmanager-dmenu/" $HOME/.config
-      cp -r .themes ~/ 
-      cp -r .icons ~/
+# Function to configure Nvidia for Hyprland
+configure_nvidia_hyprland() {
+    sudo sed -i '$s/$/ nvidia_drm.modeset=1/' /boot/loader/entries/*linux.conf*
+    sudo sed -i 's/MODULES=(btrfs)/MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+    sudo mkinitcpio --config /etc/mkinitcpio.conf --generate
+}
 
-    elif [ $wm = 2 ]; then
-  
-      # This install all packages along with aur
-      sudo pacman -Syu fuzzel qt5-wayland qt5ct libva linux-headers nvidia-dkms hyprpaper foot ttf-bigblueterminal-nerd wl-clipboard xdg-desktop-portal-hyprland --noconfirm
-      yay -S hyprland-nvidia-git rofi-lbonn-wayland-git waybar-hyprland-git libva-nvidia-driver-git --noconfirm
+# Function to clone and install suckless programs
+install_suckless_programs() {
+    git clone https://www.github.com/arnavgr/dwm
+    git clone https://www.github.com/arnavgr/st
+    git clone https://www.github.com/arnavgr/dmenu
+    git clone https://www.github.com/arnavgr/slock
 
-      # This configures nvidia to work on hyprland
-      sudo sed -i '$s/$/ nvidia_drm.modeset=1/' /boot/loader/entries/*linux.conf*        
-      sudo sed -i 's/MODULES=(btrfs)/MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-      sudo mkinitcpio --config /etc/mkinitcpio.conf --generate /boot/initramfs-custom.img
-      echo -e "options nvidia-drm modeset=1" | sudo tee -a /etc/modprobe.d/nvidia.conf 
+    cd dwm && make && sudo make clean install && cd ..
+    cd st && make && sudo make clean install && cd ..
+    cd dmenu && make && sudo make clean install && cd ..
+    cd slock && make && sudo make clean install && cd ..
+}
 
-# This symlinks all configs to .config  
-  ln -sf "$PWD/.config/zsh/" $HOME/.config
-  ln -sf "$PWD/.zshenv" $HOME
-  ln -sf "$PWD/.config/nvim" $HOME/.config
-  ln -sf "$PWD/.config/ranger" $HOME/.config
-  ln -sf "$PWD/.config/zathura" $HOME/.config
-  ln -sf "$PWD/.config/foot" $HOME/.config
-  ln -sf "$PWD/.config/dunst" $HOME/.config
-  ln -sf "$PWD/.config/neofetch" $HOME/.config
-  ln -sf "$PWD/bin" $HOME
-  ln -sf "$PWD/.config/hypr" $HOME/.config
-  ln -sf "$PWD/.config/rofi/" $HOME/.config
-  ln -sf "$PWD/.config/waybar/" $HOME/.config
-  cp -r .themes ~/ 
-  cp -r .icons ~/
+# Function to install dwm on Void Linux
+install_dwm_void() {
+    sudo xbps-install xorg libXft-devel libX11-devel libXinerama-devel libXrandr-devel imlib2-devel NetworkManager neovim w3m github-cli neofetch firefox ranger zsh htop feh pamixer pavucontrol flatpak ueberzug atool poppler ImageMagick highlight zathura-pdf-poppler brightnessctl dunst acpi gvim mpv ncmpcpp bluez cups system-config-printer blueman zip unzip unrar void-repo-nonfree
+    sudo xbps-install -Su
+    sudo xbps-install maim xclip xdotool picom libxcb arandr nvidia tlp thermald nix elogind chrony lxappearance polkit-elogind
 
-  fi
- fi
-fi
+    install_suckless_programs
+}
 
+# Function to install dwm on Arch Linux
+install_dwm_arch() {
+    install_common_packages
+    install_aur_helper
+    install_xorg_packages
 
-echo -e "installation successfull do you want to reboot(Y/n)"
+    install_suckless_programs
+}
 
-read reboot
+# Function to install Hyprland on Arch Linux
+install_hyprland_arch() {
+    install_common_packages
+    install_aur_helper
+    install_hyprland_packages
 
-if [[ $reboot == "Y" || $reboot == "y" ]]; then
-  reboot
-fi
+    sudo pacman -Syu libva-nvidia-driver-git nvidia-utils nvidia-settings hyprland-nvidia-git rofi-lbonn-wayland-git waybar-hyprland-git --noconfirm
+
+    configure_nvidia_hyprland
+}
+
+# Call the main function to start the script
+main
+
