@@ -1,8 +1,8 @@
 * {
   transition: none;
   box-shadow: none;
-  font-family: BigBlueTermPlus Nerd Font;
-  font-size: 12.5px;
+  font-family: GohuFont uni14 Nerd Font Propo;
+  font-size: 14px;
   color: #f8f8f2;
 }
 
@@ -27,8 +27,8 @@
 }
 
 #workspaces button.active {
-  border-radius: 10px;
-  background-color: rgba(238,138,238,0.8);
+  border-radius: 25px;
+  background-color: rgba(238,138,238,0.8); 
 }
 
 #workspaces button.urgent {
@@ -105,7 +105,7 @@
 
 #custom-logo {
 
-  font-size: 24px;
+  font-size: 20px;
   min-width: 40px;
   color: #8be9fd;
 }

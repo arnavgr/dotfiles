@@ -12,16 +12,17 @@
         "format": " {}"
     },
 
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
          "on-click": "activate",
          "active-only":false,
          "all-outputs": false,    
-      //   "persistent_workspaces": {
-      //      "1": [],
-      //      "2": [],
-      //      "3": [],
-      //      "4": [],
-      //   }
+         "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+         },
      
       "format": "{icon}",
       "format-icons": {
@@ -78,12 +79,13 @@
 
     "battery": {
     	"bat": "BAT0",
+       "interval": 5, 
         "states": {
             // "good": 80,
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon} {capacity}%",
+        "format": "{icon}{capacity}%",
         "format-charging": "⚡ {capacity}%",
         "format-plugged": "  {capacity}%",
         // "format-good": "", // An empty format will hide the module
@@ -122,8 +124,8 @@
       "format-source-muted": "",
       "format-icons": {
         "headphone": "",
-        "hands-free": "",
-        "headset": "🎧",
+        "hands-free": "󱡏",
+        "headset": "",
         "phone": "",
         "portable": "",
         "car": "",
