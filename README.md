@@ -3,14 +3,23 @@ Dotfiles for my hyprland configuration on arch and dwm config on void(WIP).
 
 ## Description 
 Distro: Arch
+
 WM: Hyprland
+
 Bar: Waybar
+
 Shell: zsh
+
 Terminal: foot
+
 File Manager: Ranger
+
 Run Launcher and Powermenu: Rofi(wayland-fork)
+
 Notification Manager: dunst
+
 Fetch: catnip
+
 Theme: Dracula
 
 ## Note
