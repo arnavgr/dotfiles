@@ -1,5 +1,6 @@
 #startup programs
 neofetch
+eval $(thefuck --alias)
 
 # history management
 HISTSIZE=5000
