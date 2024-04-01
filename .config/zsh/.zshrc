@@ -1,5 +1,12 @@
+# Check if catnip is installed
+if command -v catnip &> /dev/null; then
+    catnip
+# Check if neofetch is installed
+elif command -v neofetch &> /dev/null; then
+    neofetch
+fi
+
 #startup programs
-neofetch
 eval $(thefuck --alias)
 
 # history management
