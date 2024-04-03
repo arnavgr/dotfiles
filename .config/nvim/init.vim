@@ -4,7 +4,7 @@ source $HOME/.config/nvim/vim-plug/plugins.vim
 set ruler
 set autowrite
 set noswapfile nowritebackup nobackup
-set number norelativenumber
+set number relativenumber
 set history=1000
 set ttimeout ttimeoutlen=1 timeoutlen=500
 set wildmenu wildmode=list:full
@@ -45,3 +45,5 @@ colorscheme dracula
 " airline config
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+
+

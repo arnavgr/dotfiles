@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Define the file name
+file="$HOME/.config/hypr/hyprland.conf"
+
+# Check if lines 8 to 12 already contain '#'
+if ! sed -n '9,13 { /^#/!q1 }' "$file" &> /dev/null; then
+    # Add '#' to lines that don't have '#'
+    sed -i '9,13 { /^[^#]/s/^/#/ }' "$file" 
+    # Remove '#' from lines 8 and 9
+    sed -i '11,12 s/^#//' "$file"
+    
+    # restart waybar
+    killall -SIGUSR1 waybar
+else
+    dunstify "hyprmonitor is already active"
+fi
