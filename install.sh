@@ -70,7 +70,8 @@ install_xorg_packages() {
 
 # Function to install Hyprland packages
 install_hyprland_packages() {
-    sudo pacman -Syu fuzzel qt5-wayland qt5ct libva linux-headers nvidia-dkms hyprpaper foot ttf-bigblueterminal-nerd wl-clipboard xdg-desktop-portal-hyprland
+    sudo pacman -Syu hyprland waybar fuzzel qt5-wayland qt5ct libva linux-headers nvidia-dkms hyprpaper foot wl-clipboard xdg-desktop-portal-hyprland libva-nvidia-driver-git nvidia-utils nvidia-settings --noconfirm
+    yay -Syu rofi-lbonn-wayland-git hyprshot getnf
 }
 
 # Function to configure Nvidia for Hyprland
@@ -107,7 +108,6 @@ install_dwm_arch() {
     install_common_packages
     install_aur_helper
     install_xorg_packages
-
     install_suckless_programs
 }
 
@@ -116,10 +116,9 @@ install_hyprland_arch() {
     install_common_packages
     install_aur_helper
     install_hyprland_packages
-
-    sudo pacman -Syu libva-nvidia-driver-git nvidia-utils nvidia-settings hyprland-nvidia-git rofi-lbonn-wayland-git waybar-hyprland-git --noconfirm
-
     configure_nvidia_hyprland
+    
+    getnf -i Gohu
 }
 
 # Call the main function to start the script
