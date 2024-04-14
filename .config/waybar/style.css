@@ -28,7 +28,7 @@
 
 #workspaces button.active {
   border-radius: 25px;
-  background-color: rgba(238,138,238,0.8); 
+  background-color: rgba(253, 110, 252,1); 
 }
 
 #workspaces button.urgent {
@@ -62,13 +62,17 @@
   background-color: transparent;
 }
 
+#battery, #cpu, #disk, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #mpd, #custom-updates {
+  color:rgba(165,2,251,1)
+}
+
 #custom-updates, #idle_inhibitor {
   font-size: 16px;
-
 }
 
 #clock {
   margin: 4px 2px;
+  color: rgba(13, 239, 255,1); 
 }
 
 #mpd *{

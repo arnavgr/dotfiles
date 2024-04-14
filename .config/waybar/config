@@ -94,12 +94,6 @@
         //"format-alt": "{time}",
     },
 
-    "temperature": {
-        "critical-threshold": 80,
-	"format-critical": "{temperatureC}° ",
-	"format": "{temperatureC}° "
-    },
-
     "network": {
         "format": "{icon}",
         "format-alt": "{ipaddr}/{cidr} {icon}",
