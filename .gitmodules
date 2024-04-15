@@ -1,18 +1,9 @@
-[submodule ".config/zsh/git-prompt.zsh"]
-	path = .config/zsh/git-prompt.zsh
-	url = https://github.com/woefe/git-prompt.zsh
-[submodule ".config/zsh/zsh-syntax-highlighting"]
-	path = .config/zsh/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting
 [submodule ".config/ranger/plugins/ranger_devicons"]
 	path = .config/ranger/plugins/ranger_devicons
 	url = https://github.com/alexanderjeurissen/ranger_devicons
 [submodule ".themes/gtk"]
 	path = .themes/gtk
 	url = https://github.com/dracula/gtk
-[submodule ".config/zsh/zsh-autosuggestions"]
-	path = .config/zsh/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions
 [submodule ".config/zsh/.antidot"]
 	path = .config/zsh/.antidot
 	url = https://github.com/mattmc3/antidote

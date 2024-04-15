@@ -4,4 +4,6 @@
 
 .config/neofetch/config.conf
 
+.config/zsh/.zsh_plugins.zsh
+
 yay
