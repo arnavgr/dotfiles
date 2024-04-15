@@ -13,3 +13,6 @@
 [submodule ".config/zsh/zsh-autosuggestions"]
 	path = .config/zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule ".config/zsh/.antidot"]
+	path = .config/zsh/.antidot
+	url = https://github.com/mattmc3/antidote

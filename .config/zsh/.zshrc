@@ -1,3 +1,6 @@
+# benchmarking zsh
+#zmodload zsh/zprof
+
 # Check if catnip is installed
 if command -v catnip &> /dev/null; then
     catnip
@@ -6,8 +9,16 @@ elif command -v neofetch &> /dev/null; then
     neofetch
 fi
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #startup programs
 eval $(thefuck --alias)
+autoload -U compinit; compinit
 
 # history management
 HISTSIZE=5000
@@ -22,9 +33,9 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-# autocompletion
-autoload -U compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# using plugin manager antidote
+source ~/.config/zsh/.antidot/antidote.zsh
+antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
 # vim bindings
 # bindkey -v
@@ -32,21 +43,5 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 # custom prompt design
 # PROMPT='%F{green}%~%f %F{blue}->%f '
 
-# zsh-syntax-highlighting
-source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# zsh-autocompletion
-#source ~/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-
-# zsh-autosuggestions
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# git-prompt
-source ~/.config/zsh/git-prompt.zsh/git-prompt.zsh
-
-# aliases
-source ~/.config/zsh/.zsh_alias
-
-
-
-
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

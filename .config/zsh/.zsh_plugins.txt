@@ -1,0 +1,10 @@
+# plugins for zsh
+romkatv/powerlevel10k 
+romkatv/zsh-bench kind:path
+zsh-users/zsh-syntax-highlighting kind:defer
+zsh-users/zsh-autosuggestions kind:defer
+Aloxaf/fzf-tab kind:defer
+zsh-users/zsh-history-substring-search kind:defer
+
+# aliases
+$ZDOTDIR/.zsh_alias
