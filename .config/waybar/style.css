@@ -68,11 +68,12 @@
 
 #custom-updates, #idle_inhibitor {
   font-size: 16px;
+  color: rgba(249,0,64,1)
 }
 
 #clock {
   margin: 4px 2px;
-  color: rgba(13, 239, 255,1); 
+  color: rgba(253,203,88,1); 
 }
 
 #mpd *{

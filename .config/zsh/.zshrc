@@ -37,6 +37,10 @@ setopt hist_find_no_dups
 source ~/.config/zsh/.antidot/antidote.zsh
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
+# enables history substring search
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
 # vim bindings
 # bindkey -v
 

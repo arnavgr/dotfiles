@@ -7,7 +7,7 @@
     "margin": "5, 0, 2, 0",
     "modules-left": ["custom/logo","hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "custom/updates", "idle_inhibitor", "cpu", "memory" , "backlight", "pulseaudio", "network", "battery"],
+    "modules-right": ["tray", "custom/updates", "cpu", "memory", "backlight", "pulseaudio", "network", "battery"],
     "sway/mode": {
         "format": " {}"
     },
