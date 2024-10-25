@@ -1,10 +1,15 @@
 #!/bin/bash
 
-export WLR_NO_HARDWARE_CURSORS=1
-env = LIBVA_DRIVER_NAME,nvidia
-env = XDG_SESSION_TYPE,wayland
-env = GBM_BACKEND,nvidia-drm
-env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-#env = WLR_NO_HARDWARE_CURSORS,1
+# Check if the script is run as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "must be run as root. Please use sudo."
+    exit 1
+fi
 
-exec Hyprland
+if pacman -Qq | grep -q '^efibootmgr$'; then
+    sed 's/\bnvidia/#&/g' /boot/loader/entries/*linux.conf*
+fi
+
+envycontrol
+
+

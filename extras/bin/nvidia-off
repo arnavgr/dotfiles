@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Define the service names
+resume_service="hyprland-resume.service"
+suspend_service="hyprland-suspend.service"
+
+# Check if the script is run as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "must be run as root. Please use sudo."
+    exit 1
+fi
+
+# Disables nvidia kernel parameters
+if pacman -Qq | grep -q '^efibootmgr$'; then
+  sed -i 's/\([^#]\)nvidia/\1#&/g' /boot/loader/entries/*linux.conf*
+  echo "nvidia kernel modules disabled for efibootmgr"
+fi
+
+# Check if envycontrol is installed
+if command -v envycontrol &>/dev/null; then
+  # If envycontrol is installed, switch to integrated
+  envycontrol -s integrated
+  echo "Envycontrol switched to integrated successfully."
+else
+  echo "Envycontrol is not installed."
+fi
+
+# Function to disable a service if it exists
+disable_service() {
+  local service_name="$1"
+  if systemctl list-unit-files --type=service | grep -q "$service_name"; then
+    sudo systemctl disable "$service_name"
+    echo "Service '$service_name' disabled."
+  else
+    echo "Service '$service_name' is not active."
+  fi
+}
+
+# Check and disable hyprland-resume.service
+disable_service "$resume_service"
+
+# Check and disable hyprland-suspend.service
+disable_service "$suspend_service"
+
+

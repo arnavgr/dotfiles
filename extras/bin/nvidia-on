@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Define the service names
+resume_service="hyprland-resume.service"
+suspend_service="hyprland-suspend.service"
+
+# Check if the script is run as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "must be run as root. Please use sudo."
+    exit 1
+fi
+
+# Enables nvidia kernel modules
+if pacman -Qq | grep -q '^efibootmgr$'; then
+    sed -i 's/#\bnvidia/\bnvidia/g' /boot/loader/entries/*linux.conf*
+fi
+
+# Check if envycontrol is installed
+if command -v envycontrol &>/dev/null; then
+  # If envycontrol is installed, ask which mode to use
+  read -r "do you want to enable hybrid mode or nvidia mode(note: nvidia mode does not work on wayland and defaults to hybrid)\n" mode
+  if [[ $mode == "nvidia" ]]; then
+    envycontrol -s nvidia
+  elif [[ $mode == "hybrid" ]]; then
+    envycontrol -s hybrid
+  fi
+  echo "Envycontrol switched to $mode successfully."
+else
+  echo "Envycontrol is not installed."
+fi
+
+# Function to enable a service if it exists
+enable_service() {
+  local service_name="$1"
+  if systemctl is-enabled --quiet "$service_name"; then
+    echo "Service '$service_name' is already enabled."
+  else
+    sudo systemctl enable "$service_name"
+    echo "Service '$service_name' enabled."
+  fi
+}
+
+# Enable hyprland-resume.service
+enable_service "$resume_service"
+
+# Enable hyprland-suspend.service
+enable_service "$suspend_service"
+
