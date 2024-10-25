@@ -1,5 +1,5 @@
 # DotFiles
-Dotfiles for my hyprland configuration on arch and dwm config on void(WIP).
+Dotfiles for my hyprland configuration on arch
 
 ## Description 
 Distro: Arch
@@ -25,6 +25,7 @@ Theme: Dracula
 ## Note
 Do not use install.sh since it is only made to install packages on my system according to my needs.
 termux-install.sh can be used to install my config on any termux just clone the repo and run the file.
+Feel free to use my configs
 
 ### Hyprland(Arch)
 
