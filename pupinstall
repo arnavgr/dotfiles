@@ -1,0 +1,47 @@
+#!/bin/sh
+
+vpm xmirror
+
+vpm update 
+
+vpm forceinstall base-devel libXft-devel libX11-devel libXinerama-devel libXrandr-devel imlib2-devel neovim w3m github-cli neofetch chromium zsh feh ranger atool poppler ImageMagick highlight zathura-pdf-poppler dunst ncmpcpp git maim xclip xdotool xbanish fzf lsd
+
+
+vpm forceinstall gcc glibc-devel libtool gcc-libs binutils libuv binutils-libs binutils-devel libgcc libgcc-devel zlib-devel bzip2-devel libpng-devel brotli-devel
+
+mkdir ~/suckless && cd ~/suckless
+
+git config --global user.name="arnavgr"
+git config --global user.email="arnavgr@hotmail.com"
+git config --global http.postBuffer 524288000
+git config --global http.maxRequestBuffer 100M
+git config --global fetch.parallel 1
+
+git clone https://github.com/arnavgr/dwm
+git clone https://github.com/arnavgr/st
+git clone https://github.com/arnavgr/dmenu
+git clone https://github.com/arnavgr/slstatus
+
+cd dwm && make && sudo make clean install && cd ..
+cd st && make && sudo make clean install && cd ..
+cd dmenu && make && sudo make clean install && cd ..
+cd slstatus && make && sudo make clean install && cd ..
+
+gh auth login
+git clone git@github.com:arnavgr/dotfiles.git --recurse-submodules
+
+cp -rf dotfiles/.config/zsh ~/.config/
+cp -rf dotfiles/.config/ranger ~/.config/
+cp -rf dotfiles/.config/neofetch ~/.config/
+cp -rf dotfiles/.config/dunst ~/.config/
+cp -rf dotfiles/.config/nvim ~/.config/
+cp -rf dotfiles/.config/zathura ~/.config/
+
+cp -rf dotfiles/.zshenv $HOME
+cp -rf "$PWD/extras/wallpapers" $HOME/Pictures
+cp -rf "$PWD/extras/bin" $HOME/.local/ 
+cp -rf "$PWD/.icons" $HOME
+cp -rf "$PWD/.themes" $HOME
+
+curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
+getnf -i FiraCode
