@@ -11,10 +11,7 @@ pkg clean
 termux-setup-storage
 
 # Install essential packages
-pkg install curl wget git neovim python grep htop openssh zsh gh neofetch
-
-# Install Termux ADB
-curl -s https://raw.githubusercontent.com/nohajc/termux-adb/master/install.sh | bash
+pkg install curl wget lsd neovim python grep htop openssh zsh gh neofetch ncurses-utils
 
 # Create necessary directories
 mkdir -p $HOME/.config
@@ -30,7 +27,7 @@ ln -sf "$PWD/.config/neofetch/" $HOME/.config
 cp $HOME/.config/neofetch/android $HOME/.config/neofetch/config.conf
 
 # Applying Dracula Theme on Termux
-cp colors.properties $HOME/.termux
+cp extras/colors.properties $HOME/.termux
 
 # Copy zsh environment configuration
 cp .zshenv $HOME
