@@ -38,6 +38,10 @@ chsh -s zsh
 # Install Termux-NF
 curl -fsSL https://raw.githubusercontent.com/arnavgr/termux-nf/main/install.sh | bash
 
+#removes termux help guide at start
+touch ~/.hushlogin
+
 # Run getnf command to set up Termux-NF
 getnf
+
 
