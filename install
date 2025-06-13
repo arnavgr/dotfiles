@@ -87,7 +87,6 @@ install_stage=(
     thunar-archive-plugin 
     file-roller
     nwg-look-bin
-/c/Users/hp
     sddm
     sddm-sugar-candy-git
     rofi-lbonn-wayland-git 
