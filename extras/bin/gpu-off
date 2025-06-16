@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+echo "[+] Switching to non-graphical target..."
+systemctl isolate multi-user.target
+echo "[+] Unloading NVIDIA kernel modules..."
+modprobe -r nvidia_drm || true
+modprobe -r nvidia_uvm || true
+modprobe -r nvidia_modeset || true
+modprobe -r nvidia || true
+echo "[+] Powering off NVIDIA GPU..."
+echo 1 > /sys/bus/pci/devices/0000:01:00.0/remove
+echo "[+] Switching back to graphical session..."
+systemctl start graphical.target

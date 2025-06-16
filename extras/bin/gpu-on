@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+echo "[+] Rescanning PCI bus to detect NVIDIA GPU..."
+echo 1 > /sys/bus/pci/rescan
+echo "[+] Loading NVIDIA kernel modules..."
+modprobe nvidia
+modprobe nvidia_modeset
+modprobe nvidia_uvm
+modprobe nvidia_drm
+
+if ! systemctl is-active --quiet graphical.target; then
+  echo "[+] Starting graphical session..."
+  systemctl start graphical.target
+else
+  echo "[✓] Graphical session already running. Skipping restart."
+fi
+
