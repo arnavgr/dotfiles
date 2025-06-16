@@ -17,7 +17,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 #startup programs
-eval $(thefuck --alias)
 autoload -U compinit; compinit
 
 # history management
