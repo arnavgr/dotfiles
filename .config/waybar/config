@@ -104,7 +104,7 @@
             "ethernet": ["󰈀"],
             "disconnected": [""]
         },
-        "on-click": "foot -e nmtui",
+        "on-click": "foot -e bash -c 'nmtui'",
         "tooltip-format": "{ifname}: {ipaddr}",
     },
 

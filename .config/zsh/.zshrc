@@ -4,9 +4,9 @@
 # Check if catnip is installed
 if command -v catnip &> /dev/null; then
     catnip
-# Check if neofetch is installed
-elif command -v neofetch &> /dev/null; then
-    neofetch
+# Check if fastfetch is installed
+elif command -v fastfetch &> /dev/null; then
+    fastfetch
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
