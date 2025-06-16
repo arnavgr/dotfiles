@@ -7,3 +7,5 @@
 .config/zsh/.zsh_plugins.zsh
 
 yay
+
+.config/nvim/autoload/plugged/

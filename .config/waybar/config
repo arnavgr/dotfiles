@@ -164,7 +164,7 @@
 
      "custom/logo": {
         "format": " <span rise='1000'>{icon}</span>",
-        "format-icons": " ",
+        "format-icons": " ",
         "tooltip": false
         }
       },      
