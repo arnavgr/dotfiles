@@ -91,9 +91,9 @@
     hyprpaper hyprpicker nwg-look networkmanagerapplet lsd
   ];
 
-  # Custom Nerd Fonts
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Gohu" ]; })
+  fonts.packages = [
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.gohufont
   ];
 
   # Enable flakes and garbage collection
