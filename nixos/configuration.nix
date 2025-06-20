@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix  
+   # Other imports can follow...
+  ];
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -18,7 +21,7 @@
       command = ''
         ${pkgs.greetd.tuigreet}/bin/tuigreet \
           --cmd "dbus-run-session Hyprland" \
-          --theme /etc/tuigreet/dracula.toml \
+          --theme 'container=brightblack;text=white;greet=magenta;border=magenta;prompt=green;input=brightmagenta;time=cyan;action=yellow;button=brightyellow'
           --greeting "Welcome to NixOS" \
           --time \
           --remember \
@@ -116,7 +119,7 @@
   # Core packages
   environment.systemPackages = with pkgs; [
     firefox neovim w3m gh ranger zsh htop fastfetch git nwg-look terminus_font
-    unzip zip unrar atool highlight file pciutils usbutils auto-cpufreq 
+    unzip zip unrar atool highlight file pciutils usbutils auto-cpufreq fzf 
     pulsemixer pavucontrol mpv ncmpcpp feh imagemagick poppler_utils zathura
     ueberzug brightnessctl acpi dunst waybar rofi-wayland foot hyprpaper
     hyprpicker networkmanagerapplet lsd wl-clipboard cliphist jq flatpak greetd.tuigreet 
