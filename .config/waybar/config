@@ -69,12 +69,8 @@
 
     "memory": {
         "interval": 30,
-        "format": " {percentage}%",
-
-        "max-length": 10,
+        "format": " {used:0.1f}G/{total:0.1f}G",
         "tooltip": false,
-        "warning": 70,
-        "critical": 90
     },
 
     "battery": {
@@ -98,7 +94,7 @@
         "format": "{icon}",
         "format-alt": "{ipaddr}/{cidr} {icon}",
         "format-alt-click": "click-right",
-        "format-wifi": " ({signalStrength}%)",
+        "format-wifi": " {essid}",
         "format-icons": {
             "wifi": ["󰤟", "󰤢","󰤥","󰤨"],
             "ethernet": ["󰈀"],

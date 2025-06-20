@@ -124,6 +124,7 @@
     ueberzug brightnessctl acpi dunst waybar rofi-wayland foot hyprpaper
     hyprpicker networkmanagerapplet lsd wl-clipboard cliphist jq flatpak greetd.tuigreet 
     xfce.thunar gvfs fuzzel grim slurp gtk3 polkit_gnome libva python3Packages.requests
+    pulseaudio
 
     libsForQt5.qt5ct qt5.qtwayland qt5.qtsvg
   ];
