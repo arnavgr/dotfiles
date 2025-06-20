@@ -24,8 +24,7 @@ set autoindent smarttab expandtab
 set shiftround tabstop=2 shiftwidth=2
 
 " Keybind shortcuts
-set pastetoggle=<F26>
-map <F25> :NERDTreeToggle<CR>
+map <F1> :NERDTreeToggle<CR>
 map <C-h> :tabp<cr>
 map <C-l> :tabn<cr>
 map <C-e> :tabclose<cr>
