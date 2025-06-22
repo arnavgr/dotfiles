@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix  
     ./themes.nix
+#    ./dotfiles.nix
    # Other imports can follow...
   ];
 

@@ -55,12 +55,20 @@ in {
     fi
   '';
 
-  # Link system configuration files safely
+ # Link all files from dotfiles/nixos to /etc/nixos
   system.activationScripts.linkSystemConfig = lib.stringAfter [ "etc" ] ''
-    echo "[dotfiles.nix] Linking system configs to /etc/nixos..."
+    echo "[dotfiles.nix] Linking all system config files from ~/dotfiles/nixos to /etc/nixos..."
 
-    ln -sf "${syscfg}/configuration.nix" /etc/nixos/configuration.nix
-    ln -sf "${syscfg}/hardware-configuration.nix" /etc/nixos/hardware-configuration.nix
+    for file in "${syscfg}"/*; do
+      base="$(basename "$file")"
+      target="/etc/nixos/$base"
+      if [ ! -e "$target" ] || [ -L "$target" ]; then
+        ln -sf "$file" "$target"
+        echo "Linked: $target → $file"
+      else
+        echo "Skipping existing: $target"
+      fi
+    done
   '';
 
 }
