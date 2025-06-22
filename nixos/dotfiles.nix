@@ -54,5 +54,14 @@ in {
       echo "Skipping existing: .local/bin"
     fi
   '';
+
+  # Link system configuration files safely
+  system.activationScripts.linkSystemConfig = lib.stringAfter [ "etc" ] ''
+    echo "[dotfiles.nix] Linking system configs to /etc/nixos..."
+
+    ln -sf "${syscfg}/configuration.nix" /etc/nixos/configuration.nix
+    ln -sf "${syscfg}/hardware-configuration.nix" /etc/nixos/hardware-configuration.nix
+  '';
+
 }
 
