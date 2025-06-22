@@ -23,7 +23,7 @@
       command = ''
         ${pkgs.greetd.tuigreet}/bin/tuigreet \
           --cmd "dbus-run-session Hyprland" \
-          --theme 'container=black;text=white;greet=brightmagenta;border=brightmagenta;prompt=green;input=magenta;time=cyan;action=yellow;button=white'
+          --theme 'container=black;text=white;greet=brightmagenta;border=brightmagenta;prompt=green;input=magenta;time=cyan;action=yellow;button=magenta'
           --greeting "Welcome to NixOS" \
           --time \
           --remember \
