@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix  
+    ./themes.nix
    # Other imports can follow...
   ];
 
@@ -21,7 +22,7 @@
       command = ''
         ${pkgs.greetd.tuigreet}/bin/tuigreet \
           --cmd "dbus-run-session Hyprland" \
-          --theme 'container=brightblack;text=white;greet=magenta;border=magenta;prompt=green;input=brightmagenta;time=cyan;action=yellow;button=brightyellow'
+          --theme 'container=black;text=white;greet=brightmagenta;border=brightmagenta;prompt=green;input=magenta;time=cyan;action=yellow;button=white'
           --greeting "Welcome to NixOS" \
           --time \
           --remember \
@@ -123,8 +124,8 @@
     pulsemixer pavucontrol mpv ncmpcpp feh imagemagick poppler_utils zathura
     ueberzug brightnessctl acpi dunst waybar rofi-wayland foot hyprpaper
     hyprpicker networkmanagerapplet lsd wl-clipboard cliphist jq flatpak greetd.tuigreet 
-    xfce.thunar gvfs fuzzel grim slurp gtk3 polkit_gnome libva python3Packages.requests
-    pulseaudio
+    xfce.thunar gvfs xfce.thunar-volman fuzzel grim slurp gtk3 polkit_gnome libva python3Packages.requests
+    pulseaudio udiskie 
 
     libsForQt5.qt5ct qt5.qtwayland qt5.qtsvg
   ];

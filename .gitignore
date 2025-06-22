@@ -9,3 +9,5 @@
 yay
 
 .config/nvim/autoload/plugged/
+
+.icons/default/index.theme
