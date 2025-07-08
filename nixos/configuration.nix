@@ -4,7 +4,8 @@
   imports = [
     ./hardware-configuration.nix  
     ./themes.nix
-#    ./dotfiles.nix
+    ./hyprpanel.nix
+#   ./dotfiles.nix
    # Other imports can follow...
   ];
 
@@ -13,6 +14,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 3;
   boot.kernelParams = [ ];
+  boot.extraModprobeConfig = "options uinput devname=ydotool force_create=1";
+  services.udev.extraRules = ''
+    KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
+  '';
 
   # TTY font 
   console.font = "Lat2-Terminus16";
@@ -72,6 +77,7 @@
   # Bluetooth, printing, Avahi
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+  hardware.bluetooth.powerOnBoot = false;
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.gutenprint pkgs.cnijfilter2 ];
   services.avahi = {
@@ -108,7 +114,7 @@
   users.users.arnavgr = {
     isNormalUser = true;
     description = "Arnav";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "input" ];
     shell = pkgs.zsh;
     packages = with pkgs; [ ];
   };
@@ -126,7 +132,7 @@
     ueberzug brightnessctl acpi dunst waybar rofi-wayland foot hyprpaper
     hyprpicker networkmanagerapplet lsd wl-clipboard cliphist jq flatpak greetd.tuigreet 
     xfce.thunar gvfs xfce.thunar-volman fuzzel grim slurp gtk3 polkit_gnome libva python3Packages.requests
-    pulseaudio udiskie 
+    pulseaudio udiskie ydotool system-config-printer 
 
     libsForQt5.qt5ct qt5.qtwayland qt5.qtsvg
   ];
@@ -143,6 +149,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
+    persistent = true;
     options = "--delete-older-than 7d";
   };
 
