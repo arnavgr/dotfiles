@@ -7,3 +7,6 @@
 [submodule ".config/zsh/.antidot"]
 	path = .config/zsh/.antidot
 	url = https://github.com/mattmc3/antidote
+[submodule ".icons/Dracula"]
+	path = .icons/Dracula
+	url = https://github.com/m4thewz/dracula-icons
