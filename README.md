@@ -1,24 +1,24 @@
-# DotFiles
+# Dotfiles
 Dotfiles for my hyprland configuration on arch
 
 ## Description 
-Distro: Arch
+Distro: Arch/NixOS
 
 WM: Hyprland
 
-Bar: Waybar
+Bar: Waybar/Hyprpanel
 
 Shell: zsh
 
 Terminal: foot
 
-File Manager: Ranger
+File Manager: Ranger/Thunar
 
 Run Launcher and Powermenu: Rofi(wayland-fork)
 
 Notification Manager: dunst
 
-Fetch: catnip
+Fetch: catnip/Fastfetch
 
 Theme: Dracula
 
