@@ -18,7 +18,7 @@ Run Launcher and Powermenu: Rofi(wayland-fork)
 
 Notification Manager: dunst
 
-Fetch: catnip/Fastfetch
+Fetch: catnap/Fastfetch
 
 Theme: Dracula
 
