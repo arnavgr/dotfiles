@@ -36,6 +36,7 @@ Feel free to use my configs
 
 ### Nixos Variant
 <img width="1920" height="1080" alt="20250712_12h59m15s_grim" src="https://github.com/user-attachments/assets/40e6b28d-4e9b-493d-8bd6-ea234445d153" />
+<img width="1920" height="1080" alt="20250712_13h14m03s_grim" src="https://github.com/user-attachments/assets/b2e5db63-6a27-417d-8263-3ceebde333bd" />
 <img width="1920" height="1080" alt="20250712_12h55m25s_grim" src="https://github.com/user-attachments/assets/61ebc6be-793d-4d4c-a4d0-cd96ed0b8cb2" />
 
 
