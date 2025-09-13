@@ -451,5 +451,20 @@
   "theme.bar.enableShadow": false,
   "menus.power.lowBatteryNotification": true,
   "menus.media.hideAuthor": false,
-  "menus.dashboard.powermenu.avatar.image": "/home/arnavgr/Pictures/banana-tongue.webp"
+  "menus.dashboard.powermenu.avatar.image": "/home/arnavgr/Downloads/DeWatermark.ai_1752305572146.jpeg",
+  "menus.dashboard.directories.left.directory1.command": "thunar \"$HOME/Downloads/\"",
+  "menus.dashboard.directories.left.directory2.label": " Dots",
+  "menus.dashboard.directories.left.directory2.command": "thunar \"$HOME/dotfiles/\"",
+  "menus.dashboard.directories.left.directory3.command": "thunar \"$HOME/Videos/\"",
+  "menus.dashboard.directories.left.directory3.label": "󱧺 Videos",
+  "menus.dashboard.directories.right.directory1.command": "thunar \"$HOME/Documents/\"",
+  "menus.dashboard.directories.right.directory2.command": "thunar \"$HOME/Pictures/\"",
+  "menus.dashboard.directories.right.directory3.label": "󱍙 Music",
+  "menus.dashboard.directories.right.directory3.command": "thunar \"$HOME/Music/\"",
+  "menus.dashboard.shortcuts.right.shortcut3.command": "grim",
+  "menus.dashboard.shortcuts.left.shortcut4.command": "bash $HOME/.config/rofi/launchers/type-1/launcher.sh",
+  "menus.dashboard.shortcuts.left.shortcut4.icon": "",
+  "menus.dashboard.shortcuts.left.shortcut1.icon": "󰈹",
+  "menus.dashboard.shortcuts.left.shortcut1.command": "firefox",
+  "menus.dashboard.shortcuts.left.shortcut1.tooltip": "Firefox"
 }

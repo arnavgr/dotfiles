@@ -5,6 +5,7 @@
     ./hardware-configuration.nix  
     ./themes.nix
     ./hyprpanel.nix
+    ./firefox.nix
 #   ./dotfiles.nix
    # Other imports can follow...
   ];
@@ -13,11 +14,37 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 3;
-  boot.kernelParams = [ ];
+  boot.kernelParams = [ "nvidia.NVreg_DynamicPowerManagement=0x02" "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
   boot.extraModprobeConfig = "options uinput devname=ydotool force_create=1";
   services.udev.extraRules = ''
     KERNEL=="uinput", GROUP="input", MODE="0660", OPTIONS+="static_node=uinput"
   '';
+
+  # Drivers 
+  services.xserver.videoDrivers = [ "nvidia" "modesetting" ];
+
+  hardware.nvidia = {
+  modesetting.enable = true;
+  
+  # Critical power management settings
+  powerManagement = {
+    enable = true;
+    finegrained = true; 
+  };
+
+  prime = {
+      offload.enable = true;
+      sync.enable = false;
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+
+  # Disable services that interfere with manual control
+  open = false;
+  nvidiaSettings = false;  
+  };
+
+  systemd.services.nvidia-persistenced.enable = false;
 
   # TTY font 
   console.font = "Lat2-Terminus16";
@@ -61,7 +88,7 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     QT_QPA_PLATFORM = "wayland";
-    QT_STYLE_OVERRIDE = "qt5ct";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
   };
 
   # Audio
@@ -124,6 +151,9 @@
   # Battery saving
   services.auto-cpufreq.enable = true;
 
+  # flatpak enable
+  services.flatpak.enable = true;
+
   # Core packages
   environment.systemPackages = with pkgs; [
     firefox neovim w3m gh ranger zsh htop fastfetch git nwg-look terminus_font
@@ -132,7 +162,8 @@
     ueberzug brightnessctl acpi dunst waybar rofi-wayland foot hyprpaper
     hyprpicker networkmanagerapplet lsd wl-clipboard cliphist jq flatpak greetd.tuigreet 
     xfce.thunar gvfs xfce.thunar-volman fuzzel grim slurp gtk3 polkit_gnome libva python3Packages.requests
-    pulseaudio udiskie ydotool system-config-printer 
+    pulseaudio udiskie ydotool system-config-printer libimobiledevice appimage-run tmux usbmuxd flatpak 
+    tree
 
     libsForQt5.qt5ct qt5.qtwayland qt5.qtsvg
   ];
