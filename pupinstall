@@ -4,7 +4,7 @@ vpm xmirror
 
 vpm update 
 
-vpm forceinstall base-devel libXft-devel libX11-devel libXinerama-devel libXrandr-devel imlib2-devel neovim w3m github-cli neofetch chromium zsh feh ranger atool poppler ImageMagick highlight zathura-pdf-poppler dunst ncmpcpp git maim xclip xdotool xbanish fzf lsd
+vpm forceinstall base-devel libXft-devel libX11-devel libXinerama-devel libXrandr-devel imlib2-devel neovim w3m github-cli neofetch chromium zsh feh ranger atool poppler ImageMagick highlight zathura-pdf-poppler dunst ncmpcpp git maim xclip xdotool xbanish fzf lsd mocp
 
 
 vpm forceinstall gcc glibc-devel libtool gcc-libs binutils libuv binutils-libs binutils-devel libgcc libgcc-devel zlib-devel bzip2-devel libpng-devel brotli-devel
