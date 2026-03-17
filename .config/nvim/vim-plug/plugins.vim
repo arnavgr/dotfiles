@@ -1,15 +1,19 @@
-call plug#begin('~/.config/nvim/autoload/plugged')
+let g:plug_path = expand('~/.config/nvim/plugged')
+call plug#begin(g:plug_path)
 
-    " Better Syntax Support
-    Plug 'sheerun/vim-polyglot'
-    " File Explorer
-    Plug 'scrooloose/NERDTree'
-    " Auto pairs for '(' '[' '{'
-    Plug 'jiangmiao/auto-pairs'
-    " Colorscheme for vim
+ " --- Aesthetics & Icons ---
     Plug 'dracula/vim', { 'as': 'dracula' }
-    " airline customisation
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'nvim-tree/nvim-web-devicons'
+
+    " --- Modern Replacements ---
+    Plug 'nvim-tree/nvim-tree.lua'
+    Plug 'windwp/nvim-autopairs'
+
+    " --- Syntax & Rendering ---
+    Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'master', 'do': ':TSUpdate'}
+    Plug 'MeanderingProgrammer/render-markdown.nvim'
+    Plug 'andrewferrier/wrapping.nvim'
 
 call plug#end()
