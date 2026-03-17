@@ -6,8 +6,8 @@
 
 .config/zsh/.zsh_plugins.zsh
 
-yay
+.config/nvim/plugged
 
-.config/nvim/autoload/plugged/
+yay
 
 .icons/default/index.theme
