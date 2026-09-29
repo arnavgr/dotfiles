@@ -1,47 +1,156 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -euo pipefail
 
-vpm xmirror
+# Determine privilege elevation
+SUDO=""
+[ "$(id -u)" -ne 0 ] && SUDO="sudo"
 
-vpm update 
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
+SUCKLESS_DIR="${SUCKLESS_DIR:-$HOME/suckless}"
 
-vpm forceinstall base-devel libXft-devel libX11-devel libXinerama-devel libXrandr-devel imlib2-devel neovim w3m github-cli neofetch chromium zsh feh ranger atool poppler ImageMagick highlight zathura-pdf-poppler dunst ncmpcpp git maim xclip xdotool xbanish fzf lsd mocp
+install_apt() {
+    echo "=== [1/3] Installing Base APT Dependencies ==="
+    $SUDO apt update$SUDO apt install -y --no-install-recommends \
+        build-essential \
+        make \
+        gcc \
+        git \
+        zsh \
+        feh \
+        ranger \
+        atool \
+        poppler-utils \
+        imagemagick \
+        highlight \
+        zathura \
+        dunst \
+        ncmpcpp \
+        maim \
+        xclip \
+        xdotool \
+        xbanish \
+        fzf \
+        ripgrep \
+        gh \
+        libx11-dev \
+        libxft-dev \
+        libxinerama-dev \
+        libxrandr-dev \
+        libimlib2-dev \
+        libfontconfig1-dev \
+        libfreetype6-dev \
+        curl \
+        ca-certificates
+}
 
+build_suckless() {
+    echo "=== [2/3] Managing Suckless Repositories ==="
+    mkdir -p "$SUCKLESS_DIR"
+    
+    local repos=("dwm" "st" "dmenu" "slstatus")
+    for repo in "${repos[@]}"; do
+        local target="$SUCKLESS_DIR/$repo"
+        if [ ! -d "$target" ]; then
+            echo "Cloning $repo from upstream..."
+            git clone "https://github.com/arnavgr/$repo.git" "$target"
+        else
+            echo "Pulling latest changes for $repo..."
+            git -C "$target" pull || echo "Warning: git pull failed for $repo, building existing tree."
+        fi
+        
+        echo "Compiling and installing $repo..."
+        (
+            cd "$target"
+            make
+            $SUDO make clean install
+        )
+    done
+}
 
-vpm forceinstall gcc glibc-devel libtool gcc-libs binutils libuv binutils-libs binutils-devel libgcc libgcc-devel zlib-devel bzip2-devel libpng-devel brotli-devel
+link_dotfiles() {
+    echo "=== [3/3] Establishing Bidirectional Dotfile Symlinks ==="
+    
+    if [ ! -d "$DOTFILES_DIR" ]; then
+        echo "Cloning dotfiles repository..."
+        git clone --recurse-submodules https://github.com/arnavgr/dotfiles.git "$DOTFILES_DIR"
+    fi
 
-mkdir ~/suckless && cd ~/suckless
+    mkdir -p "$HOME/.config" "$HOME/.local/bin" "$HOME/Pictures"
 
-git config --global user.name="arnavgr"
-git config --global user.email="arnavgr@hotmail.com"
-git config --global http.postBuffer 524288000
-git config --global http.maxRequestBuffer 100M
-git config --global fetch.parallel 1
+    # Directory symlinks: Editing ~/.config/app edits $DOTFILES_DIR/.config/app directly
+    if [ -d "$DOTFILES_DIR/.config" ]; then
+        for config_path in "$DOTFILES_DIR/.config/"*; do
+            [ -d "$config_path" ] || continue
+            local target_name
+            target_name="$(basename "$config_path")"
+            
+            # Back up real directories to prevent clobbering uncommitted work
+            if [ -d "$HOME/.config/$target_name" ] && [ ! -L "$HOME/.config/$target_name" ]; then
+                echo "Backing up local directory: ~/.config/$target_name to ~/.config/${target_name}.bak"
+                mv "$HOME/.config/$target_name" "$HOME/.config/${target_name}.bak"
+            fi
+            
+            ln -sfn "$config_path" "$HOME/.config/$target_name"
+            echo "Linked: ~/.config/$target_name -> $config_path"
+        done
+    fi
 
-git clone https://github.com/arnavgr/dwm
-git clone https://github.com/arnavgr/st
-git clone https://github.com/arnavgr/dmenu
-git clone https://github.com/arnavgr/slstatus
+    # Root dotfiles
+    [ -f "$DOTFILES_DIR/.zshenv" ] && ln -sf "$DOTFILES_DIR/.zshenv" "$HOME/.zshenv"
 
-cd dwm && make && sudo make clean install && cd ..
-cd st && make && sudo make clean install && cd ..
-cd dmenu && make && sudo make clean install && cd ..
-cd slstatus && make && sudo make clean install && cd ..
+    # Extras and binaries
+    if [ -d "$DOTFILES_DIR/extras/wallpapers" ]; then
+        ln -sfn "$DOTFILES_DIR/extras/wallpapers" "$HOME/Pictures/wallpapers"
+    fi
 
-gh auth login
-git clone git@github.com:arnavgr/dotfiles.git --recurse-submodules
+    if [ -d "$DOTFILES_DIR/extras/bin" ]; then
+        for bin_file in "$DOTFILES_DIR/extras/bin/"*; do
+            [ -e "$bin_file" ] || continue
+            ln -sf "$bin_file" "$HOME/.local/bin/$(basename "$bin_file")"
+        done
+    fi
 
-cp -rf dotfiles/.config/zsh ~/.config/
-cp -rf dotfiles/.config/ranger ~/.config/
-cp -rf dotfiles/.config/neofetch ~/.config/
-cp -rf dotfiles/.config/dunst ~/.config/
-cp -rf dotfiles/.config/nvim ~/.config/
-cp -rf dotfiles/.config/zathura ~/.config/
+    # Themes and icons
+    for asset in .icons .themes; do
+        if [ -d "$DOTFILES_DIR/$asset" ]; then
+            ln -sfn "$DOTFILES_DIR/$asset" "$HOME/$asset"
+        fi
+    done
 
-cp -rf dotfiles/.zshenv $HOME
-cp -rf "$PWD/extras/wallpapers" $HOME/Pictures
-cp -rf "$PWD/extras/bin" $HOME/.local/ 
-cp -rf "$PWD/.icons" $HOME
-cp -rf "$PWD/.themes" $HOME
+    # Font setup
+    if ! command -v getnf >/dev/null 2>&1; then
+        curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
+    fi
+    getnf -i FiraCode || echo "Warning: getnf font installation failed."
+}
 
-curl -fsSL https://raw.githubusercontent.com/getnf/getnf/main/install.sh | bash
-getnf -i FiraCode
+show_usage() {
+    echo "Usage: $0 [all|apt|suckless|dotfiles]"
+    echo "  all      - Execute complete deployment (APT -> Suckless -> Dotfiles)"
+    echo "  apt      - Install host packages and headers only"
+    echo "  suckless - Clone, pull, and compile dwm/st/dmenu/slstatus"
+    echo "  dotfiles - Set up bidirectional symlinks"
+    exit 1
+}
+
+# Subcommand dispatch
+case "${1:-all}" in
+    all)
+        install_apt
+        build_suckless
+        link_dotfiles
+        echo "Full deployment completed successfully."
+        ;;
+    apt)
+        install_apt
+        ;;
+    suckless)
+        build_suckless
+        ;;
+    dotfiles)
+        link_dotfiles
+        ;;
+    *)
+        show_usage
+        ;;
+esac
